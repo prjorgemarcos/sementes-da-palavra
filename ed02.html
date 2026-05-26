@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 02</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --cinza: #6B7280;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0D2B1A 0%, #1A4731 55%, #2D6A4F 100%);
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 75% 15%, rgba(82,183,136,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 15% 85%, rgba(139,105,20,0.12) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(82,183,136,0.15);
+    border: 1px solid rgba(82,183,136,0.35);
+    color: #74C69D;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; background: #52B788; border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 10px;
+  }
+  .hero h1 em { font-style: italic; color: #74C69D; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(82,183,136,0.75); font-style: italic; margin-bottom: 32px; }
+
+  .tabs {
+    display: flex; background: rgba(0,0,0,0.22); border-radius: 12px;
+    padding: 4px; gap: 4px; max-width: 360px; margin: 0 auto;
+  }
+  .tab-btn {
+    flex: 1; padding: 10px 8px; border: none; border-radius: 9px;
+    font-size: 13px; font-weight: 600; font-family: 'Source Sans 3', sans-serif;
+    cursor: pointer; transition: all .25s;
+    color: rgba(255,255,255,0.5); background: transparent;
+  }
+  .tab-btn.active { background: var(--verde-claro); color: #0D2B1A; }
+
+  /* YOUTUBE */
+  .yt-section { background: var(--verde-escuro); padding: 18px 24px; }
+  .yt-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: #FF0000; color: white; text-decoration: none;
+    border-radius: 10px; padding: 14px 24px;
+    font-size: 15px; font-weight: 600; font-family: 'Source Sans 3', sans-serif;
+    max-width: 480px; margin: 0 auto; transition: opacity .2s, transform .2s;
+  }
+  .yt-btn:hover { opacity: .9; transform: translateY(-1px); }
+  .yt-icon { font-size: 20px; }
+  .yt-label { display: flex; flex-direction: column; text-align: left; }
+  .yt-label span:first-child { font-size: 11px; font-weight: 400; opacity: .85; }
+
+  /* CONTENT */
+  .content { max-width: 640px; margin: 0 auto; padding: 32px 24px 60px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-family: 'Lora', serif; font-size: 22px; font-weight: 700;
+    color: var(--verde-escuro); margin-bottom: 6px;
+  }
+  .section-divider {
+    height: 3px; background: linear-gradient(90deg, var(--verde-claro), transparent);
+    border-radius: 2px; margin-bottom: 24px;
+  }
+  .sec-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--verde-claro); margin-bottom: 6px;
+  }
+
+  /* DEVOCIONAL */
+  .dev-gancho {
+    font-family: 'Lora', serif; font-size: 17px; color: var(--verde-escuro);
+    font-style: italic; line-height: 1.65; margin-bottom: 28px;
+    padding-bottom: 28px; border-bottom: 1px solid #E5E7EB;
+  }
+  .versiculo-box {
+    background: var(--verde-menta); border-left: 4px solid var(--verde-claro);
+    border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 24px 0;
+  }
+  .versiculo-box p {
+    font-family: 'Lora', serif; font-size: 16px; font-style: italic;
+    color: var(--verde-escuro); line-height: 1.65; margin-bottom: 8px;
+  }
+  .versiculo-box .ref { font-size: 12px; font-weight: 700; color: var(--verde-medio); letter-spacing: .5px; }
+  .dev-body p { font-size: 16px; color: var(--dark); line-height: 1.75; margin-bottom: 16px; }
+  .dev-body p:last-child { margin-bottom: 0; }
+
+  .desafio-box {
+    background: #F0FDF4; border: 1.5px solid var(--verde-claro);
+    border-radius: 10px; padding: 16px 20px; margin: 28px 0;
+  }
+  .desafio-box .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--verde-medio); margin-bottom: 8px;
+  }
+  .desafio-box p { font-size: 15px; color: var(--verde-escuro); line-height: 1.65; }
+
+  .oracao-box {
+    background: var(--dourado-claro); border: 1.5px solid #D4A843;
+    border-radius: 10px; padding: 20px; margin: 8px 0 28px;
+  }
+  .oracao-box .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--dourado); margin-bottom: 10px;
+  }
+  .oracao-box p {
+    font-family: 'Lora', serif; font-size: 15px; font-style: italic;
+    color: #3A2800; line-height: 1.7;
+  }
+
+  /* ESBOÇO */
+  .esboco-intro {
+    font-size: 15px; color: var(--cinza); line-height: 1.7;
+    margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #E5E7EB;
+  }
+  .contexto-card {
+    background: var(--verde-escuro); border-radius: 12px; padding: 20px;
+    margin-bottom: 24px; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7;
+  }
+  .contexto-card h3 {
+    font-family: 'Lora', serif; color: #74C69D; font-size: 16px; margin-bottom: 10px;
+  }
+
+  .ponto { margin-bottom: 8px; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; }
+  .ponto-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 16px 20px; cursor: pointer;
+    background: var(--white); transition: background .2s;
+  }
+  .ponto-header:hover { background: #F9FAFB; }
+  .ponto-header.open { background: var(--verde-escuro); }
+  .ponto-num {
+    flex-shrink: 0; width: 28px; height: 28px;
+    background: var(--verde-menta); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--verde-escuro); transition: all .2s;
+  }
+  .ponto-header.open .ponto-num { background: rgba(82,183,136,0.25); color: #74C69D; }
+  .ponto-titulo { flex: 1; font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.3; transition: color .2s; }
+  .ponto-header.open .ponto-titulo { color: #fff; }
+  .ponto-chevron { flex-shrink: 0; font-size: 18px; color: var(--cinza); transition: transform .25s, color .2s; }
+  .ponto-header.open .ponto-chevron { transform: rotate(180deg); color: #74C69D; }
+
+  .ponto-body { display: none; padding: 0 20px 20px; background: var(--white); border-top: 1px solid #F3F4F6; }
+  .ponto-body.open { display: block; }
+  .ponto-versiculo {
+    background: var(--verde-menta); border-left: 3px solid var(--verde-claro);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0;
+    font-family: 'Lora', serif; font-size: 14px; font-style: italic;
+    color: var(--verde-escuro); line-height: 1.6;
+  }
+  .ponto-versiculo .ref {
+    display: block; margin-top: 6px; font-size: 11px; font-weight: 700;
+    font-style: normal; color: var(--verde-medio); letter-spacing: .5px;
+  }
+  .ponto-body p { font-size: 15px; color: var(--mid); line-height: 1.72; margin-bottom: 12px; }
+  .ponto-body p:last-child { margin-bottom: 0; }
+
+  .conexao-box {
+    background: #FFF8E7; border-left: 3px solid #D4A843;
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0;
+    font-size: 13px; color: #3A2800; line-height: 1.6;
+  }
+  .conexao-box strong { color: var(--dourado); }
+  .curiosidade-box {
+    background: #F8F9FA; border-radius: 8px; padding: 12px 16px;
+    margin: 12px 0; font-size: 13px; color: var(--mid); line-height: 1.6;
+  }
+  .curiosidade-box strong { color: var(--verde-medio); }
+  .citacao-box {
+    background: #F0FDF4; border-left: 3px solid var(--verde-claro);
+    border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0;
+    font-family: 'Lora', serif; font-size: 14px; font-style: italic;
+    color: var(--verde-escuro); line-height: 1.6;
+  }
+
+  /* FOOTER */
+  .page-footer { background: var(--verde-escuro); padding: 28px 24px; text-align: center; }
+  .page-footer p { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+  .page-footer small { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 02</div>
+    <h1>O perdido <em>era eu</em></h1>
+    <p class="hero-sub">Lucas 19.1–10 · Pr. Jorge Marcos Fonseca</p>
+    <p class="hero-ref">Igreja Batista da Freguesia da Ilha — 26 de abril de 2026</p>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('devocional', this)">Devocional</button>
+      <button class="tab-btn" onclick="showTab('esboco', this)">Esboço</button>
+    </div>
+  </div>
+</div>
+
+<!-- YOUTUBE -->
+<div class="yt-section">
+  <a class="yt-btn" href="https://www.youtube.com/live/bx0pG3ZzUW0?si=GRkpj_DbKpSQOQrJ" target="_blank">
+    <span class="yt-icon">▶</span>
+    <span class="yt-label">
+      <span>Assista à mensagem completa</span>
+      <span>O perdido era eu · IBF</span>
+    </span>
+  </a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- DEVOCIONAL -->
+  <div id="devocional" class="section active">
+    <p class="section-title">Devocional</p>
+    <div class="section-divider"></div>
+
+    <div class="dev-gancho">
+      Tem uma pergunta que não saiu da minha cabeça desde que preguei esse texto: você foi buscar Jesus — ou foi Jesus que foi te buscar?
+    </div>
+
+    <div class="sec-label">A palavra que ficou</div>
+    <div class="versiculo-box">
+      <p>"Pois o Filho do homem veio buscar e salvar o que estava perdido."</p>
+      <span class="ref">Lucas 19.10</span>
+    </div>
+
+    <div class="sec-label">O que eu quero compartilhar com você</div>
+    <div class="dev-body">
+      <p>Zaqueu subiu na árvore. Fez o esforço. Se expôs ao ridículo. Mas foi Jesus quem parou, olhou para cima e chamou pelo nome. A iniciativa sempre foi de Jesus — não de Zaqueu.</p>
+      <p>Penso em quantas vezes a gente acha que o nosso esforço espiritual é o que nos aproxima de Deus. Que precisamos nos arrumar primeiro, resolver primeiro, melhorar primeiro. Mas a história de Zaqueu diz o contrário: Jesus foi até a casa de um homem que a cidade inteira havia descartado. Não esperou ele descer. Foi até ele.</p>
+      <p>E aqui está o detalhe que me tocou fundo: Zaqueu não mudou para merecer Jesus. Ele encontrou Jesus — e a mudança veio como consequência. A transformação que Cristo opera não é uma lista de regras a cumprir. É uma nova orientação do coração.</p>
+      <p>A igreja é um lugar de <em>ex</em>. Ex-perdido. Ex-viciado. Ex-traficante. Ex-mentiroso. O que nos une não é a nossa perfeição — é o fato de que Alguém nos encontrou quando ainda estávamos na árvore.</p>
+    </div>
+
+    <div class="desafio-box">
+      <div class="label">Esta semana</div>
+      <p>Pensa numa área da sua vida onde você ainda acha que precisa se arrumar antes de levar a Deus. Leva assim mesmo. Agora. Ele já está indo ao seu encontro.</p>
+    </div>
+
+    <div class="oracao-box">
+      <div class="label">Vamos orar juntos</div>
+      <p>Senhor, obrigado por não esperares que eu estivesse pronto. Tu vieste ao meu encontro quando eu ainda estava na árvore — exposto, assustado, sem merecer nada. Que essa verdade mude a forma como eu me vejo e como eu vejo os outros ao meu redor. Amém.</p>
+    </div>
+  </div>
+
+  <!-- ESBOÇO -->
+  <div id="esboco" class="section">
+    <p class="section-title">Esboço de Estudo</p>
+    <div class="section-divider"></div>
+
+    <p class="esboco-intro">Por baixo de cada pregação há horas de estudo. Aqui está o que o tempo do culto não permite mostrar — o contexto histórico, os pontos desenvolvidos, as curiosidades do texto e as conexões bíblicas.</p>
+
+    <!-- Contexto -->
+    <div class="contexto-card">
+      <h3>Quem era Zaqueu — e por que isso importa</h3>
+      <p>Zaqueu era chefe dos publicanos em Jericó, uma das cidades mais ricas da Palestina. Publicanos eram judeus que cobravam impostos para Roma — e frequentemente extorquiam o próprio povo para enriquecer. Eram considerados traidores da nação, excluídos da sinagoga, impedidos de testemunhar em tribunais. Para a sociedade judaica, Zaqueu era duplamente impuro: colaborador do invasor e ladrão do povo. Jesus escolher hospedar-se na casa dele foi um escândalo calculado.</p>
+    </div>
+
+    <!-- Pontos -->
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">1</div>
+        <span class="ponto-titulo">Aproxime-se para saber quem Jesus é de verdade</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Procurava ver quem era Jesus, mas não conseguia por causa da multidão, pois era de pequena estatura."
+          <span class="ref">Lucas 19.3</span>
+        </div>
+        <p>Zaqueu não foi ver o que Jesus podia fazer por ele. Foi ver <em>quem Jesus era</em>. Essa distinção é o coração do primeiro ponto: o erro comum é buscar um Jesus utilitário — que resolva problemas, que atenda pedidos — sem nunca se perguntar quem Ele realmente é.</p>
+        <p>O pastor destacou que vivemos numa geração que constrói um "Jesus personalizado" — moldado pelos nossos desejos e conveniências. A aproximação de Zaqueu, mesmo que curiosa e ainda distante, foi honesta: ele queria saber a verdade.</p>
+        <div class="conexao-box">
+          <strong>Texto que ilumina:</strong> João 17.3 — "Esta é a vida eterna: que te conheçam a Ti, o único Deus verdadeiro." A vida eterna é definida como conhecimento relacional, não como benefício recebido.
+        </div>
+        <div class="curiosidade-box">
+          <strong>💡 Curiosidade:</strong> Zaqueu subiu numa <em>figueira brava</em> (sicomoro) — uma árvore larga e baixa, fácil de escalar, comum em Jericó. Não era uma posição de dignidade. Era a posição de quem faz o que precisa para ver, mesmo que pareça ridículo.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">2</div>
+        <span class="ponto-titulo">Jesus sempre toma a iniciativa — Ele vai ao seu encontro</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Quando Jesus chegou àquele lugar, olhou para cima e disse: 'Zaqueu, desça logo, pois hoje preciso ficar na sua casa.'"
+          <span class="ref">Lucas 19.5</span>
+        </div>
+        <p>Zaqueu subiu. Mas foi Jesus quem parou, olhou para cima e chamou pelo nome. O pastor trouxe uma frase que ficou: <em>"Não foi Zaqueu quem encontrou Jesus. Foi Jesus quem foi ao encontro de Zaqueu."</em></p>
+        <p>Jesus sabia o nome de Zaqueu. Sabia sua profissão, sua história, seus fracassos — e foi até ele assim mesmo. Isso é a lógica da graça: não somos nós que nos tornamos dignos o suficiente para nos aproximar de Deus. É Deus quem, em Cristo, vem em nossa direção no estado em que estamos.</p>
+        <div class="citacao-box">
+          "Quando chora ainda a alma, quando chora ainda a vida, o homem ainda pode ser transformado."
+        </div>
+        <div class="conexao-box">
+          <strong>Ilustração da pregação:</strong> O pastor contou o testemunho de um traficante temido que se converteu na prisão. A conversão foi tão real que transformou não só ele, mas o ambiente ao redor. O encontro com Jesus sempre produz algo irreversível.
+        </div>
+        <div class="curiosidade-box">
+          <strong>💡 Curiosidade:</strong> Jesus disse "preciso ficar na sua casa" — em grego, <em>dei</em>, que indica necessidade divina, não conveniência. Não foi um convite casual. Foi uma declaração de propósito.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">3</div>
+        <span class="ponto-titulo">Perceba-se perdido — e deixe a graça devolver sua identidade</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Hoje houve salvação nesta casa! Porque este homem também é filho de Abraão. Pois o Filho do homem veio buscar e salvar o que estava perdido."
+          <span class="ref">Lucas 19.9–10</span>
+        </div>
+        <p>Zaqueu não precisou ouvir uma lista de regras. Ao ser encontrado por Jesus, ele voluntariamente declarou que devolveria o que havia roubado em quádruplo e doaria metade dos bens aos pobres. Ninguém pediu isso. A transformação veio de dentro para fora.</p>
+        <p>O pastor destacou que Jesus declarou Zaqueu "filho de Abraão" — devolvendo-lhe a identidade que a sociedade havia tirado. A salvação não é só perdão de pecados. É restauração de quem você é.</p>
+        <div class="citacao-box">
+          "A igreja é um lugar de ex: ex-viciado, ex-traficante, ex-ladrão, ex-mentiroso."
+        </div>
+        <div class="conexao-box">
+          <strong>Texto que ilumina:</strong> Gálatas 2.20 — "Já não sou eu quem vive, mas Cristo vive em mim." O encontro com Jesus não reforma o exterior — reorienta o coração.
+        </div>
+        <div class="curiosidade-box">
+          <strong>💡 Curiosidade:</strong> A lei judaica exigia restituição de 20% acima do valor roubado (Levítico 6.5). Zaqueu ofereceu 400% — quatro vezes mais. Não estava cumprindo uma obrigação. Estava expressando uma transformação.
+        </div>
+      </div>
+    </div>
+
+    <!-- Conexões -->
+    <div style="margin-top:32px;">
+      <p class="sec-label">Conexões bíblicas da mensagem</p>
+      <div class="conexao-box" style="border-radius:8px; border-left-width:4px; margin-bottom:8px;">
+        <strong>João 3.16</strong> — Mencionado na abertura do culto como pano de fundo do amor de Deus que vai ao encontro da humanidade.
+      </div>
+      <div class="conexao-box" style="border-radius:8px; border-left-width:4px; margin-bottom:8px;">
+        <strong>Gálatas 2.20</strong> — "Já não sou eu quem vive, mas Cristo vive em mim." A nova vida após o encontro com Jesus.
+      </div>
+      <div class="conexao-box" style="border-radius:8px; border-left-width:4px;">
+        <strong>Lucas 15 (O filho pródigo)</strong> — O mesmo tema: o pai que corre ao encontro do filho perdido. Em Lucas 19, Jesus encarna esse pai — vai pessoalmente ao encontro de Zaqueu.
+      </div>
+    </div>
+
+  </div><!-- /esboco -->
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>"Pois o Filho do homem veio buscar e salvar o que estava perdido." — Lucas 19.10</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 02</small>
+</div>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function togglePonto(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.ponto-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.ponto-header').forEach(h => h.classList.remove('open'));
+    if (!isOpen) { body.classList.add('open'); header.classList.add('open'); }
+  }
+</script>
+</body>
+</html>
