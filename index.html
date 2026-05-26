@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 01</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --cinza: #6B7280;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  .hero { background: linear-gradient(160deg, #0D2B1A 0%, #1A4731 50%, #2D6A4F 100%); padding: 48px 24px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 20%, rgba(82,183,136,0.15) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(139,105,20,0.1) 0%, transparent 50%); }
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.35); color: #74C69D; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .badge-dot { width: 6px; height: 6px; background: #52B788; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(26px, 6vw, 38px); font-weight: 700; color: #FFFFFF; line-height: 1.2; margin-bottom: 10px; }
+  .hero h1 em { font-style: italic; color: #74C69D; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 6px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(82,183,136,0.8); font-style: italic; margin-bottom: 32px; }
+  .tabs { display: flex; background: rgba(0,0,0,0.2); border-radius: 12px; padding: 4px; gap: 4px; max-width: 360px; margin: 0 auto; }
+  .tab-btn { flex: 1; padding: 10px 8px; border: none; border-radius: 9px; font-size: 13px; font-weight: 600; font-family: 'Source Sans 3', sans-serif; cursor: pointer; transition: all 0.25s; color: rgba(255,255,255,0.55); background: transparent; }
+  .tab-btn.active { background: var(--verde-claro); color: #0D2B1A; }
+
+  .yt-section { background: var(--verde-escuro); padding: 20px 24px; }
+  .yt-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #FF0000; color: white; text-decoration: none; border-radius: 10px; padding: 14px 24px; font-size: 15px; font-weight: 600; font-family: 'Source Sans 3', sans-serif; max-width: 480px; margin: 0 auto; transition: opacity 0.2s; }
+  .yt-btn:hover { opacity: 0.9; }
+  .yt-icon { font-size: 20px; }
+  .yt-label { display: flex; flex-direction: column; text-align: left; }
+  .yt-label span:first-child { font-size: 11px; font-weight: 400; opacity: 0.85; }
+
+  .content { max-width: 640px; margin: 0 auto; padding: 32px 24px 60px; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--verde-claro); margin-bottom: 6px; }
+  .dev-gancho { font-family: 'Lora', serif; font-size: 17px; color: var(--verde-escuro); font-style: italic; line-height: 1.6; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid #E5E7EB; }
+  .versiculo-box { background: var(--verde-menta); border-left: 4px solid var(--verde-claro); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 24px 0; }
+  .versiculo-box p { font-family: 'Lora', serif; font-size: 16px; font-style: italic; color: var(--verde-escuro); line-height: 1.65; margin-bottom: 8px; }
+  .versiculo-box .ref { font-size: 12px; font-weight: 700; color: var(--verde-medio); letter-spacing: 0.5px; }
+  .dev-body p { font-size: 16px; color: var(--dark); line-height: 1.75; margin-bottom: 16px; }
+  .dev-body p:last-child { margin-bottom: 0; }
+  .desafio-box { background: #F0FDF4; border: 1.5px solid var(--verde-claro); border-radius: 10px; padding: 16px 20px; margin: 28px 0; }
+  .desafio-box .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--verde-medio); margin-bottom: 8px; }
+  .desafio-box p { font-size: 15px; color: var(--verde-escuro); line-height: 1.65; }
+  .oracao-box { background: var(--dourado-claro); border: 1.5px solid #D4A843; border-radius: 10px; padding: 20px; margin: 8px 0 28px; }
+  .oracao-box .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dourado); margin-bottom: 10px; }
+  .oracao-box p { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: #3A2800; line-height: 1.7; }
+
+  .esboco-intro { font-size: 15px; color: var(--cinza); line-height: 1.7; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #E5E7EB; }
+  .contexto-card { background: var(--verde-escuro); border-radius: 12px; padding: 20px; margin-bottom: 24px; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7; }
+  .contexto-card h3 { font-family: 'Lora', serif; color: #74C69D; font-size: 16px; margin-bottom: 10px; }
+  .ponto { margin-bottom: 8px; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; }
+  .ponto-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; background: var(--white); transition: background 0.2s; gap: 12px; }
+  .ponto-header:hover { background: #F9FAFB; }
+  .ponto-header.open { background: var(--verde-escuro); }
+  .ponto-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--verde-menta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--verde-escuro); transition: all 0.2s; }
+  .ponto-header.open .ponto-num { background: rgba(82,183,136,0.25); color: #74C69D; }
+  .ponto-titulo { flex: 1; font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.3; transition: color 0.2s; }
+  .ponto-header.open .ponto-titulo { color: #FFFFFF; }
+  .ponto-chevron { flex-shrink: 0; font-size: 18px; color: var(--cinza); transition: transform 0.25s, color 0.2s; }
+  .ponto-header.open .ponto-chevron { transform: rotate(180deg); color: #74C69D; }
+  .ponto-body { display: none; padding: 0 20px 20px; background: var(--white); border-top: 1px solid #F3F4F6; }
+  .ponto-body.open { display: block; }
+  .ponto-versiculo { background: var(--verde-menta); border-left: 3px solid var(--verde-claro); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0; font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--verde-escuro); line-height: 1.6; }
+  .ponto-versiculo .ref { display: block; margin-top: 6px; font-size: 11px; font-weight: 700; font-style: normal; color: var(--verde-medio); letter-spacing: 0.5px; }
+  .ponto-body p { font-size: 15px; color: var(--mid); line-height: 1.72; margin-bottom: 12px; }
+  .ponto-body p:last-child { margin-bottom: 0; }
+  .conexao-box { background: #FFF8E7; border-left: 3px solid #D4A843; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; color: #3A2800; line-height: 1.6; }
+  .conexao-box strong { color: var(--dourado); }
+  .curiosidade-box { background: #F8F9FA; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .curiosidade-box strong { color: var(--verde-medio); }
+  .section-title { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--verde-escuro); margin-bottom: 6px; }
+  .section-divider { height: 3px; background: linear-gradient(90deg, var(--verde-claro), transparent); border-radius: 2px; margin-bottom: 24px; }
+  .page-footer { background: var(--verde-escuro); padding: 28px 24px; text-align: center; }
+  .page-footer p { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+  .page-footer small { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 01</div>
+    <h1>A Esperança da <em>Segunda Vinda</em></h1>
+    <p class="hero-sub">Apocalipse 21.1–8 · Pr. Jorge Marcos Fonseca</p>
+    <p class="hero-ref">Igreja Batista da Freguesia da Ilha — IBF</p>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('devocional', this)">Devocional</button>
+      <button class="tab-btn" onclick="showTab('esboco', this)">Esboço</button>
+    </div>
+  </div>
+</div>
+
+<div class="yt-section">
+  <a class="yt-btn" href="https://www.youtube.com/live/7mX2ISC7h-k?si=CthaKAcwChuDOJAG" target="_blank">
+    <span class="yt-icon">▶</span>
+    <span class="yt-label">
+      <span>Assista à mensagem completa</span>
+      <span>A Esperança da Segunda Vinda · IBF</span>
+    </span>
+  </a>
+</div>
+
+<div class="content">
+
+  <div id="devocional" class="section active">
+    <p class="section-title">Devocional</p>
+    <div class="section-divider"></div>
+    <div class="dev-gancho">Sabe o que ficou no meu coração depois que preguei esse texto? Que a gente passou anos com medo de um livro que foi escrito pra nos dar esperança.</div>
+    <div class="sec-label">A palavra que ficou</div>
+    <div class="versiculo-box">
+      <p>"Estou fazendo novas todas as coisas."</p>
+      <span class="ref">Apocalipse 21.5</span>
+    </div>
+    <div class="sec-label">O que eu quero compartilhar com você</div>
+    <div class="dev-body">
+      <p>Construímos uma fanfic enorme em cima do Apocalipse — cheia de terror e destruição — e perdemos o que ele realmente é: uma carta de consolo para quem sofre.</p>
+      <p>Quando li esse versículo em voz alta no culto, travei num detalhe. Não é "farei". É <strong>estou fazendo</strong>. Presente. Isso significa que Deus não está esperando o futuro para agir — Ele já está trabalhando. Na sua vida. Na minha. Agora.</p>
+      <p>Penso em quantas vezes eu mesmo olhei para uma situação e pensei: isso não tem jeito. E esse versículo chega e diz: tem sim. Eu já estou nisso.</p>
+      <p>Tem mais uma coisa que não consigo tirar da cabeça: a conta já foi paga. Luz, água, IPTU — tudo quitado por Cristo. Você não precisa mais viver com o peso de uma dívida que Ele já quitou. O lugar está reservado. A questão é se você está vivendo com essa leveza.</p>
+    </div>
+    <div class="desafio-box">
+      <div class="label">Esta semana</div>
+      <p>Quando a ansiedade chegar — e ela vai chegar — para tudo e repete em voz alta: <em>"Ele está fazendo novas todas as coisas. Inclusive isso que está me pesando agora."</em></p>
+    </div>
+    <div class="oracao-box">
+      <div class="label">Vamos orar juntos</div>
+      <p>Senhor, obrigado por não esperares o futuro para agir. Tu já estás trabalhando — em mim, na minha casa, na situação que eu achei que não tinha saída. Que eu viva essa semana com a leveza de quem sabe que a conta foi paga. Amém.</p>
+    </div>
+  </div>
+
+  <div id="esboco" class="section">
+    <p class="section-title">Esboço de Estudo</p>
+    <div class="section-divider"></div>
+    <p class="esboco-intro">Toda pregação que você ouve tem horas de estudo por baixo. Aqui você encontra o que o tempo do culto não permite mostrar — o contexto, as conexões bíblicas, as curiosidades do texto.</p>
+    <div class="contexto-card">
+      <h3>Por que este texto foi escrito?</h3>
+      <p>Apocalipse chegou às igrejas por volta do ano 95 d.C. Os cristãos perdiam emprego, bens e liberdade por confessar que Jesus — e não o imperador — era Senhor. Alguns foram literalmente queimados nos jardins do imperador Nero. Para esse povo, este livro não era motivo de medo. Era oxigênio.</p>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">1</div>
+        <span class="ponto-titulo">Apocalipse é esperança, não terror</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">"Vi um novo céu e uma nova terra, pois o primeiro céu e a primeira terra tinham deixado de existir."<span class="ref">Apocalipse 21.1</span></div>
+        <p>A palavra "novo" em grego é <em>kainos</em> — novo em qualidade, não em número. Não é um segundo mundo criado do zero. É esta criação restaurada ao seu melhor estado possível.</p>
+        <p>O "mar" que deixa de existir não é o oceano — é o caos. No imaginário hebraico, o mar representava ameaça e instabilidade. Sem mar = sem fontes de medo.</p>
+        <div class="conexao-box"><strong>Texto que ilumina:</strong> Isaías 65.17 — "Criarei novos céus e nova terra." Apocalipse 21 cumpre essa profecia em sua forma final.</div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">2</div>
+        <span class="ponto-titulo">A Nova Jerusalém desce — não sobe</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">"Vi a cidade santa, a nova Jerusalém, descendo do céu, da parte de Deus, preparada como noiva adornada para o seu marido."<span class="ref">Apocalipse 21.2</span></div>
+        <p>A cidade <em>desce</em>. Deus vai ao encontro do homem — nunca o contrário. A redenção sempre parte de cima para baixo. Isso é graça.</p>
+        <p>A imagem da noiva não é arquitetura — é relacionamento. Intimidade, cuidado, pertencimento.</p>
+        <div class="conexao-box"><strong>Texto que ilumina:</strong> Efésios 5.25–27 — Cristo amou a Igreja como um noivo, para apresentá-la gloriosa. Ap 21.2 é o cumprimento dessa promessa.</div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">3</div>
+        <span class="ponto-titulo">Deus sempre quis morar conosco</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">"Agora o tabernáculo de Deus está com os homens. Ele habitará com eles."<span class="ref">Apocalipse 21.3</span></div>
+        <p><em>Tabernáculo</em> (skēnē, em grego) é tenda. No deserto, Deus habitou numa tenda no meio do povo. Em João 1.14, Jesus "armou sua tenda" entre nós. Em Ap 21.3, isso se torna eterno.</p>
+        <div class="conexao-box"><strong>O fio da Bíblia inteira:</strong> Êxodo 25.8 → João 1.14 → Apocalipse 21.3. Deus sempre avançando em direção ao Seu povo.</div>
+        <div class="curiosidade-box"><strong>💡 Curiosidade:</strong> O v.3 usa três formas diferentes de dizer a mesma coisa. A repetição não é acidente — é ênfase pastoral para um povo que sofre: Eu estou com vocês.</div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">4</div>
+        <span class="ponto-titulo">"Estou fazendo" — o presente que muda tudo</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">"O que estava assentado no trono disse: 'Estou fazendo novas todas as coisas!'"<span class="ref">Apocalipse 21.5</span></div>
+        <p>O tempo verbal em grego é presente contínuo: não "farei", mas "estou fazendo". A renovação já começou — inclusive em você.</p>
+        <div class="conexao-box"><strong>Texto que ilumina:</strong> 2 Coríntios 5.17 — "Se alguém está em Cristo, é nova criação." A nova criação cósmica começa pessoalmente em quem encontra Cristo.</div>
+        <div class="curiosidade-box"><strong>💡 Curiosidade:</strong> Deus acrescenta: "Escreva, pois estas palavras são fiéis e verdadeiras." Para quem sofre e duvida, a garantia de fidelidade é ela mesma uma palavra de consolo.</div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">5</div>
+        <span class="ponto-titulo">O aviso do v.8 — sério, mas não cruel</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">"Mas os covardes, os incrédulos... o lugar que lhes caberá será no lago que arde com fogo e enxofre."<span class="ref">Apocalipse 21.8</span></div>
+        <p>A lista começa com "covardes" — em grego, <em>deilos</em>. Quem abandona a fé por medo. Para igrejas sob perseguição, esse era o perigo real.</p>
+        <p>O versículo não está lá para assustar. Está lá para garantir: o esforço de quem persevera não é em vão. A justiça de Deus prevalecerá.</p>
+        <div class="conexao-box"><strong>Atenção:</strong> O texto termina no v.6 com convite — "A quem tiver sede, darei de graça." Deus não encerra com julgamento, mas com oferta.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  <p>"Estou fazendo novas todas as coisas." — Apocalipse 21.5</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 01</small>
+</div>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function togglePonto(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.ponto-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.ponto-header').forEach(h => h.classList.remove('open'));
+    if (!isOpen) { body.classList.add('open'); header.classList.add('open'); }
+  }
+</script>
+</body>
+</html>
