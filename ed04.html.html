@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 04</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --cinza: #6B7280;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  .hero {
+    background: linear-gradient(160deg, #0D2B1A 0%, #1A4731 55%, #2D6A4F 100%);
+    padding: 48px 24px 56px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 75% 15%, rgba(82,183,136,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 15% 85%, rgba(139,105,20,0.12) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.35);
+    color: #74C69D; font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+  }
+  .badge-dot { width:6px; height:6px; background:#52B788; border-radius:50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  .hero h1 { font-family:'Lora',serif; font-size:clamp(26px,6vw,40px); font-weight:700; color:#fff; line-height:1.15; margin-bottom:10px; }
+  .hero h1 em { font-style:italic; color:#74C69D; }
+  .hero-sub { font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:4px; }
+  .hero-ref { font-family:'Lora',serif; font-size:13px; color:rgba(82,183,136,0.75); font-style:italic; margin-bottom:32px; }
+  .tabs { display:flex; background:rgba(0,0,0,0.22); border-radius:12px; padding:4px; gap:4px; max-width:360px; margin:0 auto; }
+  .tab-btn { flex:1; padding:10px 8px; border:none; border-radius:9px; font-size:13px; font-weight:600; font-family:'Source Sans 3',sans-serif; cursor:pointer; transition:all .25s; color:rgba(255,255,255,0.5); background:transparent; }
+  .tab-btn.active { background:var(--verde-claro); color:#0D2B1A; }
+
+  .yt-section { background:var(--verde-escuro); padding:18px 24px; }
+  .yt-btn { display:flex; align-items:center; justify-content:center; gap:10px; background:#FF0000; color:white; text-decoration:none; border-radius:10px; padding:14px 24px; font-size:15px; font-weight:600; font-family:'Source Sans 3',sans-serif; max-width:480px; margin:0 auto; transition:opacity .2s; }
+  .yt-btn:hover { opacity:.9; }
+  .yt-icon { font-size:20px; }
+  .yt-label { display:flex; flex-direction:column; text-align:left; }
+  .yt-label span:first-child { font-size:11px; font-weight:400; opacity:.85; }
+
+  .content { max-width:640px; margin:0 auto; padding:32px 24px 60px; }
+  .section { display:none; }
+  .section.active { display:block; }
+  .section-title { font-family:'Lora',serif; font-size:22px; font-weight:700; color:var(--verde-escuro); margin-bottom:6px; }
+  .section-divider { height:3px; background:linear-gradient(90deg,var(--verde-claro),transparent); border-radius:2px; margin-bottom:24px; }
+  .sec-label { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--verde-claro); margin-bottom:6px; }
+
+  .dev-gancho { font-family:'Lora',serif; font-size:17px; color:var(--verde-escuro); font-style:italic; line-height:1.65; margin-bottom:28px; padding-bottom:28px; border-bottom:1px solid #E5E7EB; }
+  .versiculo-box { background:var(--verde-menta); border-left:4px solid var(--verde-claro); border-radius:0 10px 10px 0; padding:16px 20px; margin:24px 0; }
+  .versiculo-box p { font-family:'Lora',serif; font-size:16px; font-style:italic; color:var(--verde-escuro); line-height:1.65; margin-bottom:8px; }
+  .versiculo-box .ref { font-size:12px; font-weight:700; color:var(--verde-medio); letter-spacing:.5px; }
+  .dev-body p { font-size:16px; color:var(--dark); line-height:1.75; margin-bottom:16px; }
+  .dev-body p:last-child { margin-bottom:0; }
+  .desafio-box { background:#F0FDF4; border:1.5px solid var(--verde-claro); border-radius:10px; padding:16px 20px; margin:28px 0; }
+  .desafio-box .label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--verde-medio); margin-bottom:8px; }
+  .desafio-box p { font-size:15px; color:var(--verde-escuro); line-height:1.65; }
+  .oracao-box { background:var(--dourado-claro); border:1.5px solid #D4A843; border-radius:10px; padding:20px; margin:8px 0 28px; }
+  .oracao-box .label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--dourado); margin-bottom:10px; }
+  .oracao-box p { font-family:'Lora',serif; font-size:15px; font-style:italic; color:#3A2800; line-height:1.7; }
+
+  .esboco-intro { font-size:15px; color:var(--cinza); line-height:1.7; margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid #E5E7EB; }
+  .contexto-card { background:var(--verde-escuro); border-radius:12px; padding:20px; margin-bottom:24px; color:rgba(255,255,255,0.85); font-size:15px; line-height:1.7; }
+  .contexto-card h3 { font-family:'Lora',serif; color:#74C69D; font-size:16px; margin-bottom:10px; }
+  .ponto { margin-bottom:8px; border:1px solid #E5E7EB; border-radius:12px; overflow:hidden; }
+  .ponto-header { display:flex; align-items:center; gap:12px; padding:16px 20px; cursor:pointer; background:var(--white); transition:background .2s; }
+  .ponto-header:hover { background:#F9FAFB; }
+  .ponto-header.open { background:var(--verde-escuro); }
+  .ponto-num { flex-shrink:0; width:28px; height:28px; background:var(--verde-menta); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--verde-escuro); transition:all .2s; }
+  .ponto-header.open .ponto-num { background:rgba(82,183,136,0.25); color:#74C69D; }
+  .ponto-titulo { flex:1; font-size:15px; font-weight:600; color:var(--dark); line-height:1.3; transition:color .2s; }
+  .ponto-header.open .ponto-titulo { color:#fff; }
+  .ponto-chevron { flex-shrink:0; font-size:18px; color:var(--cinza); transition:transform .25s,color .2s; }
+  .ponto-header.open .ponto-chevron { transform:rotate(180deg); color:#74C69D; }
+  .ponto-body { display:none; padding:0 20px 20px; background:var(--white); border-top:1px solid #F3F4F6; }
+  .ponto-body.open { display:block; }
+  .ponto-versiculo { background:var(--verde-menta); border-left:3px solid var(--verde-claro); border-radius:0 8px 8px 0; padding:12px 16px; margin:16px 0; font-family:'Lora',serif; font-size:14px; font-style:italic; color:var(--verde-escuro); line-height:1.6; }
+  .ponto-versiculo .ref { display:block; margin-top:6px; font-size:11px; font-weight:700; font-style:normal; color:var(--verde-medio); letter-spacing:.5px; }
+  .ponto-body p { font-size:15px; color:var(--mid); line-height:1.72; margin-bottom:12px; }
+  .ponto-body p:last-child { margin-bottom:0; }
+  .conexao-box { background:#FFF8E7; border-left:3px solid #D4A843; border-radius:0 8px 8px 0; padding:12px 16px; margin:12px 0; font-size:13px; color:#3A2800; line-height:1.6; }
+  .conexao-box strong { color:var(--dourado); }
+  .curiosidade-box { background:#F8F9FA; border-radius:8px; padding:12px 16px; margin:12px 0; font-size:13px; color:var(--mid); line-height:1.6; }
+  .curiosidade-box strong { color:var(--verde-medio); }
+  .citacao-box { background:#F0FDF4; border-left:3px solid var(--verde-claro); border-radius:0 8px 8px 0; padding:12px 16px; margin:12px 0; font-family:'Lora',serif; font-size:14px; font-style:italic; color:var(--verde-escuro); line-height:1.6; }
+
+  .page-footer { background:var(--verde-escuro); padding:28px 24px; text-align:center; }
+  .page-footer p { font-family:'Lora',serif; font-style:italic; font-size:14px; color:rgba(255,255,255,0.5); margin-bottom:6px; }
+  .page-footer small { font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:1px; text-transform:uppercase; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 04</div>
+    <h1>Volta para casa <em>e conta</em></h1>
+    <p class="hero-sub">Lucas 8.26–39 · Pr. Jorge Marcos Fonseca</p>
+    <p class="hero-ref">Igreja Batista da Freguesia da Ilha — 31 de maio de 2026</p>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('devocional',this)">Devocional</button>
+      <button class="tab-btn" onclick="showTab('esboco',this)">Esboço</button>
+    </div>
+  </div>
+</div>
+
+<!-- YOUTUBE -->
+<div class="yt-section">
+  <a class="yt-btn" href="https://www.youtube.com/live/IS8ajlu0B1Q?si=map_KnnqHy9DMHmR" target="_blank">
+    <span class="yt-icon">▶</span>
+    <span class="yt-label">
+      <span>Assista à mensagem completa</span>
+      <span>Volta para casa e conta · IBF</span>
+    </span>
+  </a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- DEVOCIONAL -->
+  <div id="devocional" class="section active">
+    <p class="section-title">Devocional</p>
+    <div class="section-divider"></div>
+
+    <div class="dev-gancho">
+      Tenho uma confissão para fazer: o mês da família é um dos mais difíceis para mim de pregar. Porque eu sei o quanto é complicado. Eu vivo isso.
+    </div>
+
+    <div class="sec-label">A palavra que ficou</div>
+    <div class="versiculo-box">
+      <p>"Volta para tua casa e conta quão grandes coisas te fez Deus."</p>
+      <span class="ref">Lucas 8.39</span>
+    </div>
+
+    <div class="sec-label">O que eu quero compartilhar com você</div>
+    <div class="dev-body">
+      <p>Na minha juventude, eu me dedicava tanto à igreja que minha mãe um dia me disse uma frase que doeu — e era verdade: "O meu filho tem tempo para cuidar de tanta gente, mas ninguém cuida dele." Eu estava tão ocupado servindo a Deus lá fora que estava falhando com quem Deus tinha colocado dentro de casa.</p>
+      <p>Quando Jesus libertou o gadareno, esse homem quis ficar com Jesus. Faz sentido — quem não queria? Mas Jesus disse não. E deu uma missão específica: <em>volta para casa e conta.</em> Não ensina. Não corrige. Não prega. Conta.</p>
+      <p>Tem uma história que ouvi de um motorista de aplicativo que não saiu da minha cabeça. A irmã crente dele, por anos, foi buscar a cerveja na geladeira sem reclamar — servindo com amor, enquanto orava baixinho: "Senhor, que esse seja o último gole." Ela não tentou convencê-lo. Ela testemunhou com a vida. E ele se converteu.</p>
+      <p>Isso é o que Jesus estava mandando o gadareno fazer. Não uma apresentação doutrinária. Uma história. A sua história. E sabe o que é mais libertador nessa ordem? Você não precisa converter sua família. Você precisa contar o que Deus fez em você. O resto é com Ele.</p>
+    </div>
+
+    <div class="desafio-box">
+      <div class="label">Esta semana</div>
+      <p>Pensa num familiar que você tem tentado "convencer" da fé. Esta semana, troca a argumentação por uma história: conta algo concreto que Deus fez na sua vida. Sem pressão, sem sermão — só o que você viveu.</p>
+    </div>
+
+    <div class="oracao-box">
+      <div class="label">Vamos orar juntos</div>
+      <p>Senhor, me perdoa pelas vezes que tentei ser pregador dentro de casa quando Tu me chamaste para ser testemunha. Dá-me paciência para plantar sem ver a colheita, coragem para contar a minha história e fé para acreditar que o Teu tempo é perfeito — até para aqueles que eu mais amo. Amém.</p>
+    </div>
+  </div>
+
+  <!-- ESBOÇO -->
+  <div id="esboco" class="section">
+    <p class="section-title">Esboço de Estudo</p>
+    <div class="section-divider"></div>
+
+    <p class="esboco-intro">Por baixo de cada pregação há horas de estudo. Aqui está o que o tempo do culto não permite mostrar — o contexto histórico, os pontos desenvolvidos, as curiosidades e as conexões bíblicas.</p>
+
+    <div class="contexto-card">
+      <h3>Onde Jesus foi — e por que isso importa</h3>
+      <p>A região dos gadarenos era território gentio — do outro lado do Mar da Galileia, fora das fronteiras de Israel. Era a única viagem de Jesus a terras estrangeiras registrada em Lucas. Havia porcos pastando (animal impuro para judeus), o que confirma: esse era o lugar mais "impuro" possível para um rabbi judeu. E foi exatamente aí que Jesus foi, sem ser convidado, quebrando barreiras culturais e religiosas deliberadamente.</p>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">1</div>
+        <span class="ponto-titulo">Cruze as fronteiras — interesse e compaixão antes de doutrina</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "E navegaram para a terra dos gadarenos, que está defronte da Galileia."
+          <span class="ref">Lucas 8.26</span>
+        </div>
+        <p>Jesus mudou a rota para ir ao encontro de alguém que a sociedade havia descartado. Ninguém pediu. Ninguém convidou. Ele simplesmente foi. Isso estabelece o princípio que sustenta toda a mensagem: antes de tentar evangelizar com palavras, é preciso demonstrar interesse genuíno pela pessoa.</p>
+        <div class="citacao-box">"A graça de Jesus não respeita fronteiras geográficas."</div>
+        <div class="conexao-box">
+          <strong>Ilustração da pregação:</strong> A história do frentista — perguntar o nome de um desconhecido e vê-lo chorar por se sentir visto como pessoa, não como função. Antes do evangelho em palavras, o evangelho em atenção.
+        </div>
+        <div class="curiosidade-box">
+          <strong>💡 Para pensar:</strong> Em Lucas, essa é a única vez que Jesus cruza para território gentio. Lucas está antecipando o que vai desenvolver em Atos: o Evangelho que rompe toda barreira étnica, cultural e religiosa. A família "diferente" também está dentro desse movimento.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">2</div>
+        <span class="ponto-titulo">A transformação que assusta — prepare-se para a rejeição</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Acharam então o homem, de quem haviam saído os demônios, vestido, e em seu juízo, assentado aos pés de Jesus; e temeram."
+          <span class="ref">Lucas 8.35</span>
+        </div>
+        <p>Três imagens descrevem o gadareno depois do encontro com Jesus: <strong>vestido</strong> (dignidade restaurada), <strong>em seu juízo</strong> (identidade restaurada), <strong>assentado aos pés de Jesus</strong> (posição de discípulo). Era a mesma pessoa — completamente diferente. E a reação da cidade foi pedir que Jesus fosse embora.</p>
+        <p>A transformação de uma vida incomoda quem está acostumado com a versão antiga. Dentro da família, isso aparece como: "você mudou", "não te reconheço mais", "ficou fanático". Não é necessariamente rejeição a Cristo — é desorientação diante do inexplicável.</p>
+        <div class="conexao-box">
+          <strong>Aplicação direta:</strong> A hostilidade familiar depois da conversão não significa que o testemunho falhou. Significa que a transformação foi real o suficiente para ser notada. O gadareno também causou medo antes de causar fé.
+        </div>
+        <div class="curiosidade-box">
+          <strong>💡 Detalhe do texto:</strong> A cidade pediu que Jesus fosse embora — mas não pediu que o gadareno fosse embora. Ele ficou. E foi exatamente ele quem Jesus mandou de volta como testemunha. Deus usa quem a cidade conhece, não quem a cidade admira.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">3</div>
+        <span class="ponto-titulo">Volta para casa e conta — o poder do testemunho pessoal</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Torna para tua casa e conta quão grandes coisas te fez Deus. E ele foi e anunciou por toda a cidade quão grandes coisas Jesus havia feito por ele."
+          <span class="ref">Lucas 8.39</span>
+        </div>
+        <p>O gadareno quis ir com Jesus. Era o pedido natural de quem foi libertado — ficar perto de quem libertou. Jesus disse não. E deu uma missão específica, com três elementos: <em>volta</em> (direção — para onde você já conhece), <em>para casa</em> (contexto — para quem já te conhece), <em>e conta</em> (método — narrativa, não doutrina).</p>
+        <p>O verbo é narrativo, não doutrinário. Jesus não mandou o gadareno com argumentos para convencer. Mandou com uma história — a sua própria. Dentro da família, quem conhece você antes e depois não pode negar o que está vendo. Pode discordar da teologia, mas não pode negar a mudança.</p>
+        <div class="citacao-box">"Não ensina, não corrige, não prega. Apenas conta o que Deus fez na sua vida."</div>
+        <div class="conexao-box">
+          <strong>Ilustração da pregação — o Uber e a cerveja:</strong> A irmã que servia a cerveja com amor, sem reclamar, orando baixinho: "Senhor, que esse seja o último gole." Por anos. Sem resultado visível. Até que o irmão se converteu e ligou pedindo perdão. Ela não tentou convencê-lo. Ela testemunhou com a vida e com a oração.
+        </div>
+        <div class="citacao-box">"O seu testemunho não depende de companhia."</div>
+        <div class="curiosidade-box">
+          <strong>💡 O que Lucas não registra:</strong> Não há registro de quantos se converteram na cidade depois que o gadareno contou sua história. Lucas registra que ele foi e contou. A fidelidade ao testemunho não é medida pelo resultado imediato — é medida pela obediência.
+        </div>
+        <div class="conexao-box">
+          <strong>Testemunho da pregação:</strong> O Pr. Rogério compartilhou a conversão de sua bisavó Yolanda aos 96 anos — após décadas de oração. Deus não tem prazo para agir. Mas tem uma condição: alguém precisa estar plantando.
+        </div>
+      </div>
+    </div>
+
+    <!-- CONEXÕES -->
+    <div style="margin-top:32px;">
+      <p class="sec-label">Conexões bíblicas</p>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;margin-bottom:8px;">
+        <strong>Salmos 37.5</strong> — "Entrega o teu caminho ao Senhor; confia nele, e ele agirá." Citado durante o testemunho da bisavó Yolanda — a entrega como postura de quem ora por familiares sem ver resultado imediato.
+      </div>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;margin-bottom:8px;">
+        <strong>Lucas 15 — O filho pródigo</strong> — O mesmo movimento: o pai que não desiste, que espera, que corre ao encontro. Em Lucas 8, Jesus encarna esse pai ao cruzar o lago para ir buscar o gadareno.
+      </div>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;">
+        <strong>Atos 1.8</strong> — "Sereis minhas testemunhas." O mandato do gadareno antecipa o mandato da igreja. O testemunho pessoal — "o que Deus fez em mim" — é a forma mais antiga e mais poderosa de missão.
+      </div>
+    </div>
+
+  </div><!-- /esboco -->
+</div><!-- /content -->
+
+<div class="page-footer">
+  <p>"Volta para tua casa e conta quão grandes coisas te fez Deus." — Lucas 8.39</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 04</small>
+</div>
+
+<script>
+  function showTab(id,btn){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function togglePonto(header){
+    const body=header.nextElementSibling;
+    const isOpen=body.classList.contains('open');
+    document.querySelectorAll('.ponto-body').forEach(b=>b.classList.remove('open'));
+    document.querySelectorAll('.ponto-header').forEach(h=>h.classList.remove('open'));
+    if(!isOpen){body.classList.add('open');header.classList.add('open');}
+  }
+</script>
+</body>
+</html>
