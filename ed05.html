@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 05</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --cinza: #6B7280;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  .hero {
+    background: linear-gradient(160deg, #0D2B1A 0%, #1A4731 55%, #2D6A4F 100%);
+    padding: 48px 24px 56px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 75% 15%, rgba(82,183,136,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 15% 85%, rgba(139,105,20,0.12) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.35); color: #74C69D; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .badge-dot { width: 6px; height: 6px; background: #52B788; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(26px, 6vw, 40px); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 10px; }
+  .hero h1 em { font-style: italic; color: #74C69D; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(82,183,136,0.75); font-style: italic; margin-bottom: 32px; }
+  .tabs { display: flex; background: rgba(0,0,0,0.22); border-radius: 12px; padding: 4px; gap: 4px; max-width: 360px; margin: 0 auto; }
+  .tab-btn { flex: 1; padding: 10px 8px; border: none; border-radius: 9px; font-size: 13px; font-weight: 600; font-family: 'Source Sans 3', sans-serif; cursor: pointer; transition: all .25s; color: rgba(255,255,255,0.5); background: transparent; }
+  .tab-btn.active { background: var(--verde-claro); color: #0D2B1A; }
+
+  .yt-section { background: var(--verde-escuro); padding: 18px 24px; }
+  .yt-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #FF0000; color: white; text-decoration: none; border-radius: 10px; padding: 14px 24px; font-size: 15px; font-weight: 600; font-family: 'Source Sans 3', sans-serif; max-width: 480px; margin: 0 auto; transition: opacity .2s; }
+  .yt-btn:hover { opacity: .9; }
+  .yt-icon { font-size: 20px; }
+  .yt-label { display: flex; flex-direction: column; text-align: left; }
+  .yt-label span:first-child { font-size: 11px; font-weight: 400; opacity: .85; }
+
+  .content { max-width: 640px; margin: 0 auto; padding: 32px 24px 60px; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .section-title { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--verde-escuro); margin-bottom: 6px; }
+  .section-divider { height: 3px; background: linear-gradient(90deg, var(--verde-claro), transparent); border-radius: 2px; margin-bottom: 24px; }
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--verde-claro); margin-bottom: 6px; }
+
+  .dev-gancho { font-family: 'Lora', serif; font-size: 17px; color: var(--verde-escuro); font-style: italic; line-height: 1.65; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid #E5E7EB; }
+  .versiculo-box { background: var(--verde-menta); border-left: 4px solid var(--verde-claro); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 24px 0; }
+  .versiculo-box p { font-family: 'Lora', serif; font-size: 16px; font-style: italic; color: var(--verde-escuro); line-height: 1.65; margin-bottom: 8px; }
+  .versiculo-box .ref { font-size: 12px; font-weight: 700; color: var(--verde-medio); letter-spacing: .5px; }
+  .dev-body p { font-size: 16px; color: var(--dark); line-height: 1.75; margin-bottom: 16px; }
+  .dev-body p:last-child { margin-bottom: 0; }
+  .desafio-box { background: #F0FDF4; border: 1.5px solid var(--verde-claro); border-radius: 10px; padding: 16px 20px; margin: 28px 0; }
+  .desafio-box .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--verde-medio); margin-bottom: 8px; }
+  .desafio-box p { font-size: 15px; color: var(--verde-escuro); line-height: 1.65; }
+  .oracao-box { background: var(--dourado-claro); border: 1.5px solid #D4A843; border-radius: 10px; padding: 20px; margin: 8px 0 28px; }
+  .oracao-box .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dourado); margin-bottom: 10px; }
+  .oracao-box p { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: #3A2800; line-height: 1.7; }
+
+  .esboco-intro { font-size: 15px; color: var(--cinza); line-height: 1.7; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #E5E7EB; }
+  .contexto-card { background: var(--verde-escuro); border-radius: 12px; padding: 20px; margin-bottom: 24px; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7; }
+  .contexto-card h3 { font-family: 'Lora', serif; color: #74C69D; font-size: 16px; margin-bottom: 10px; }
+  .ponto { margin-bottom: 8px; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; }
+  .ponto-header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; background: var(--white); transition: background .2s; }
+  .ponto-header:hover { background: #F9FAFB; }
+  .ponto-header.open { background: var(--verde-escuro); }
+  .ponto-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--verde-menta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--verde-escuro); transition: all .2s; }
+  .ponto-header.open .ponto-num { background: rgba(82,183,136,0.25); color: #74C69D; }
+  .ponto-titulo { flex: 1; font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.3; transition: color .2s; }
+  .ponto-header.open .ponto-titulo { color: #fff; }
+  .ponto-chevron { flex-shrink: 0; font-size: 18px; color: var(--cinza); transition: transform .25s, color .2s; }
+  .ponto-header.open .ponto-chevron { transform: rotate(180deg); color: #74C69D; }
+  .ponto-body { display: none; padding: 0 20px 20px; background: var(--white); border-top: 1px solid #F3F4F6; }
+  .ponto-body.open { display: block; }
+  .ponto-versiculo { background: var(--verde-menta); border-left: 3px solid var(--verde-claro); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0; font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--verde-escuro); line-height: 1.6; }
+  .ponto-versiculo .ref { display: block; margin-top: 6px; font-size: 11px; font-weight: 700; font-style: normal; color: var(--verde-medio); letter-spacing: .5px; }
+  .ponto-body p { font-size: 15px; color: var(--mid); line-height: 1.72; margin-bottom: 12px; }
+  .ponto-body p:last-child { margin-bottom: 0; }
+  .conexao-box { background: #FFF8E7; border-left: 3px solid #D4A843; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; color: #3A2800; line-height: 1.6; }
+  .conexao-box strong { color: var(--dourado); }
+  .curiosidade-box { background: #F8F9FA; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .curiosidade-box strong { color: var(--verde-medio); }
+  .citacao-box { background: #F0FDF4; border-left: 3px solid var(--verde-claro); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--verde-escuro); line-height: 1.6; }
+
+  .page-footer { background: var(--verde-escuro); padding: 28px 24px; text-align: center; }
+  .page-footer p { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+  .page-footer small { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 05</div>
+    <h1>Deixa o Simão <em>na mesa</em></h1>
+    <p class="hero-sub">Lucas 22.7–39 · Pr. Jorge Marcos Fonseca</p>
+    <p class="hero-ref">Igreja Batista da Freguesia da Ilha — 21 de junho de 2026</p>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('devocional',this)">Devocional</button>
+      <button class="tab-btn" onclick="showTab('esboco',this)">Esboço</button>
+    </div>
+  </div>
+</div>
+
+<!-- YOUTUBE -->
+<div class="yt-section">
+  <a class="yt-btn" href="https://www.youtube.com/live/EXqCHrsiimk?is=YZ8DN8JXnVURF6NE" target="_blank">
+    <span class="yt-icon">▶</span>
+    <span class="yt-label">
+      <span>Assista à mensagem completa</span>
+      <span>Deixa o Simão na mesa · IBF</span>
+    </span>
+  </a>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- DEVOCIONAL -->
+  <div id="devocional" class="section active">
+    <p class="section-title">Devocional</p>
+    <div class="section-divider"></div>
+
+    <div class="dev-gancho">
+      Tem uma coisa que me impressionou enquanto eu preparava essa mensagem: Jesus planejou aquela noite com cuidado. E ainda assim, a mesa virou um lugar de constrangimento.
+    </div>
+
+    <div class="sec-label">A palavra que ficou</div>
+    <div class="versiculo-box">
+      <p>"Simão, Simão! Satanás pediu para peneirar vocês como trigo. Mas eu orei por você, para que a sua fé não desfaleça."</p>
+      <span class="ref">Lucas 22.31–32</span>
+    </div>
+
+    <div class="sec-label">O que eu quero compartilhar com você</div>
+    <div class="dev-body">
+      <p>Jesus preparou aquela última ceia com desejo genuíno. Organizou o lugar, enviou os discípulos com instruções precisas, se recostou à mesa com os seus. E no meio da refeição mais importante da história, os discípulos começaram a discutir quem seria o maior entre eles.</p>
+      <p>A mesa de Jesus é um lugar de constrangimento — não porque Ele rejeita, mas porque Ele expõe. Expõe o Judas que está perto sem enxergar. Expõe o Simão que promete mais do que conhece de si mesmo. E então Jesus faz algo que me toca fundo: ao invés de continuar a conversa que não estava chegando a lugar nenhum, Ele encerra. "Já chega." E convida todos ao monte das Oliveiras.</p>
+      <p>Simão, Simão — duas vezes. Não Pedro. Jesus usou o nome antigo, o nome de antes. Como se dissesse: você ainda não é quem você acha que é. Você ainda tem muito Simão para deixar para trás antes de se tornar Pedro de verdade.</p>
+      <p>E aqui está o que não saiu da minha cabeça: Jesus não orou para que Simão não caísse. Orou para que a fé não falhasse definitivamente. A queda estava prevista. A restauração também. O que sustentou Pedro não foi a própria promessa — foi a oração de Jesus antes mesmo da negação acontecer.</p>
+    </div>
+
+    <div class="desafio-box">
+      <div class="label">Esta semana</div>
+      <p>Identifica um traço do seu "Simão" — um temperamento, um trauma, uma imaturidade que você reconhece em si. Em vez de tentar resolver sozinho, leva isso para o monte das Oliveiras. Vai com Jesus.</p>
+    </div>
+
+    <div class="oracao-box">
+      <div class="label">Vamos orar juntos</div>
+      <p>Senhor, eu reconheço que ainda tenho muito Simão dentro de mim. Traços que preciso deixar na mesa, limitações que não consigo vencer sozinho. Obrigado por orares por mim antes mesmo de eu cair. Que eu saia desta semana não com a força das minhas promessas, mas com a certeza da Tua intercessão. Amém.</p>
+    </div>
+  </div>
+
+  <!-- ESBOÇO -->
+  <div id="esboco" class="section">
+    <p class="section-title">Esboço de Estudo</p>
+    <div class="section-divider"></div>
+
+    <p class="esboco-intro">Por baixo de cada pregação há horas de estudo. Aqui está o que o tempo do culto não permite mostrar — o contexto histórico, os pontos desenvolvidos, as curiosidades e as conexões bíblicas.</p>
+
+    <div class="contexto-card">
+      <h3>O que é a Páscoa — e por que Jesus a reinterpreta</h3>
+      <p>A Páscoa judaica (Pessach) celebrava a libertação do Egito: o sangue do cordeiro no umbral das casas preservou os primogênitos de Israel da morte. Jesus reinterpreta a refeição em torno de si mesmo: agora não é mais o sangue do cordeiro que protege — é o sangue do Primogênito de Deus que é entregue. A Páscoa antiga apontava para este momento. Jesus não está criando um rito novo — está cumprindo o mais antigo.</p>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">1</div>
+        <span class="ponto-titulo">A mesa planejada — e as expectativas frustradas</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Tenho desejado muito comer esta Páscoa com vocês antes de padecer."
+          <span class="ref">Lucas 22.15</span>
+        </div>
+        <p>Jesus planejou aquela noite com cuidado — enviou Pedro e João com instruções precisas, preparou um lugar específico. E ainda assim, o que aconteceu à mesa foi longe do que ele esperava: discípulos discutindo grandeza, um traidor calado, promessas que não seriam cumpridas.</p>
+        <p>A ilustração do pavê de Natal captura isso bem: você prepara, você espera, e a reunião vai para um lugar que você não planejou. Jesus conheceu isso. A mesa dele também foi assim.</p>
+        <div class="conexao-box">
+          <strong>Frase da pregação:</strong> "A mesa de Jesus é um lugar também de constrangimento."
+        </div>
+        <div class="curiosidade-box">
+          <strong>💡 Contexto histórico:</strong> Na igreja primitiva, a Ceia do Senhor era celebrada com muito mais frequência — chegando a ser diária — e envolvia uma refeição completa. As divisões sociais que Paulo repreende em 1 Coríntios 11 mostram que desde o início a mesa de Jesus foi também lugar de conflito humano.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">2</div>
+        <span class="ponto-titulo">Judas — perto de Jesus, longe de Jesus</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Mas a mão do que vai me trair está aqui na mesa comigo."
+          <span class="ref">Lucas 22.21</span>
+        </div>
+        <p>Jesus conviveu com o traidor até o fim. Judas participou da mesma refeição, ouviu os mesmos ensinamentos, viu os mesmos milagres — e o texto não registra nenhum constrangimento da sua parte. Silêncio.</p>
+        <p>Esse é o retrato mais assustador do texto: é possível estar à mesa de Jesus e ter construído por dentro um Jesus à sua própria imagem — conveniente, domesticado, que valida suas escolhas em vez de desafiá-las.</p>
+        <div class="citacao-box">"A mesa de Jesus é um lugar de constrangimento porque nela Jesus faz perguntas difíceis que questionam nossas motivações."</div>
+        <div class="conexao-box">
+          <strong>Conexão bíblica:</strong> João 13.1 — "Tendo amado os seus que estavam no mundo, amou-os até o fim." Mesmo Judas estava incluído nesse amor. O amor de Jesus não foi suspenso diante da traição — foi até o fim mesmo assim.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">3</div>
+        <span class="ponto-titulo">Simão — você ainda não é Pedro</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Simão, Simão! Satanás pediu para peneirar vocês como trigo. Mas eu orei por você, para que a sua fé não desfaleça."
+          <span class="ref">Lucas 22.31–32</span>
+        </div>
+        <p>Jesus não chama de Pedro. Chama de Simão — duas vezes. É o nome antigo, o nome de antes da promessa. Como se Jesus dissesse: eu sei quem você ainda é. E ainda assim, orei por você.</p>
+        <p>Simão representa o lado imaturo, impulsivo, que age pela força própria e promete além do que pode cumprir. Pedro é o que Jesus vê no horizonte — quem Simão pode se tornar quando deixar de depender de si mesmo. O chamado não é eliminar o Simão pela força de vontade. É reconhecê-lo e levá-lo para o lugar de oração.</p>
+        <div class="citacao-box">"Você ainda não é Pedro, você ainda é Simão."</div>
+        <div class="curiosidade-box">
+          <strong>💡 A metáfora do trigo:</strong> Peneirar o trigo era um processo agrícola trabalhoso — o grão era lançado ao ar para separar a palha. Era necessário, mas violento. Satanás pediu permissão para fazer isso com os discípulos. E Deus permitiu — não para destruí-los, mas para purificá-los. O mesmo padrão aparece em Jó 1–2.
+        </div>
+        <div class="conexao-box">
+          <strong>Frase da pregação:</strong> "Quando a gente não tem o que dizer, quando a gente não tem o que fazer, a melhor coisa a se dizer é: Vamos orar."
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">4</div>
+        <span class="ponto-titulo">Jesus — a decisão de encerrar e ir orar</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Jesus saiu e foi, como de costume, para o monte das Oliveiras, e os seus discípulos o seguiram."
+          <span class="ref">Lucas 22.39</span>
+        </div>
+        <p>Após as espadas, as promessas exageradas e a incompreensão geral, Jesus diz "já chega" — hikanon estin em grego, uma expressão de encerramento — e vai embora da mesa. Não em fuga. Não em frustração. Em direção ao lugar habitual de oração.</p>
+        <p>"Como de costume" — Lucas indica que esse era o padrão de Jesus. O monte das Oliveiras não era um destino de emergência. Era onde ele sempre ia. A crise não mudou o hábito. Ela encontrou Jesus onde ele sempre estava: na presença do Pai.</p>
+        <div class="curiosidade-box">
+          <strong>💡 As duas espadas (v.38):</strong> Dois homens armados eram insuficientes para qualquer reação militar. Eram, porém, suficientes para que Jesus fosse "contado entre os transgressores" — cumprindo Isaías 53.12. Jesus não estava organizando resistência. Estava cumprindo profecia.
+        </div>
+        <div class="conexao-box">
+          <strong>Aplicação:</strong> Há conversas, relações e situações que chegam a um ponto onde continuar insistindo não ajuda mais. Jesus ensina: reconhece esse ponto, encerra, e vai ao lugar de oração. O que a conversa não resolveu, a presença do Pai pode trabalhar de outras formas.
+        </div>
+      </div>
+    </div>
+
+    <!-- CONEXÕES -->
+    <div style="margin-top:32px;">
+      <p class="sec-label">Conexões bíblicas da mensagem</p>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;margin-bottom:8px;">
+        <strong>Jó 1–2</strong> — Satanás pede permissão a Deus para provar Jó. Em Lucas 22.31, o mesmo padrão: Satanás pediu para peneirar os discípulos. A provação tem limite divino — não é acidente, é permissão.
+      </div>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;margin-bottom:8px;">
+        <strong>Isaías 53.12</strong> — "Foi contado entre os transgressores." Jesus cita essa profecia em Lucas 22.37 para explicar por que precisava ser preso como um rebelde. Não foi acaso — foi cumprimento.
+      </div>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;">
+        <strong>João 13.1</strong> — "Amou-os até o fim." O contexto joanino da mesma noite: o amor de Jesus não foi suspenso pela traição de Judas nem pela futura negação de Pedro.
+      </div>
+    </div>
+
+  </div><!-- /esboco -->
+</div><!-- /content -->
+
+<div class="page-footer">
+  <p>"Simão, Simão! Mas eu orei por você, para que a sua fé não desfaleça." — Lucas 22.31–32</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 05</small>
+</div>
+
+<script>
+  function showTab(id,btn){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function togglePonto(header){
+    const body=header.nextElementSibling;
+    const isOpen=body.classList.contains('open');
+    document.querySelectorAll('.ponto-body').forEach(b=>b.classList.remove('open'));
+    document.querySelectorAll('.ponto-header').forEach(h=>h.classList.remove('open'));
+    if(!isOpen){body.classList.add('open');header.classList.add('open');}
+  }
+</script>
+</body>
+</html>
