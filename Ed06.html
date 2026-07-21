@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 06</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --cinza: #6B7280;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  .hero {
+    background: linear-gradient(160deg, #0D2B1A 0%, #1A4731 55%, #2D6A4F 100%);
+    padding: 48px 24px 56px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 75% 15%, rgba(82,183,136,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 15% 85%, rgba(139,105,20,0.12) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.35); color: #74C69D; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .badge-dot { width: 6px; height: 6px; background: #52B788; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(26px, 6vw, 40px); font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 10px; }
+  .hero h1 em { font-style: italic; color: #74C69D; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(82,183,136,0.75); font-style: italic; margin-bottom: 32px; }
+  .tabs { display: flex; background: rgba(0,0,0,0.22); border-radius: 12px; padding: 4px; gap: 4px; max-width: 360px; margin: 0 auto; }
+  .tab-btn { flex: 1; padding: 10px 8px; border: none; border-radius: 9px; font-size: 13px; font-weight: 600; font-family: 'Source Sans 3', sans-serif; cursor: pointer; transition: all .25s; color: rgba(255,255,255,0.5); background: transparent; }
+  .tab-btn.active { background: var(--verde-claro); color: #0D2B1A; }
+
+  .yt-section { background: var(--verde-escuro); padding: 18px 24px; }
+  .yt-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #FF0000; color: white; text-decoration: none; border-radius: 10px; padding: 14px 24px; font-size: 15px; font-weight: 600; font-family: 'Source Sans 3', sans-serif; max-width: 480px; margin: 0 auto; transition: opacity .2s; }
+  .yt-btn:hover { opacity: .9; }
+  .yt-icon { font-size: 20px; }
+  .yt-label { display: flex; flex-direction: column; text-align: left; }
+  .yt-label span:first-child { font-size: 11px; font-weight: 400; opacity: .85; }
+
+  .content { max-width: 640px; margin: 0 auto; padding: 32px 24px 60px; }
+  .section { display: none; }
+  .section.active { display: block; }
+  .section-title { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--verde-escuro); margin-bottom: 6px; }
+  .section-divider { height: 3px; background: linear-gradient(90deg, var(--verde-claro), transparent); border-radius: 2px; margin-bottom: 24px; }
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--verde-claro); margin-bottom: 6px; }
+
+  .dev-gancho { font-family: 'Lora', serif; font-size: 17px; color: var(--verde-escuro); font-style: italic; line-height: 1.65; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid #E5E7EB; }
+  .versiculo-box { background: var(--verde-menta); border-left: 4px solid var(--verde-claro); border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 24px 0; }
+  .versiculo-box p { font-family: 'Lora', serif; font-size: 16px; font-style: italic; color: var(--verde-escuro); line-height: 1.65; margin-bottom: 8px; }
+  .versiculo-box .ref { font-size: 12px; font-weight: 700; color: var(--verde-medio); letter-spacing: .5px; }
+  .dev-body p { font-size: 16px; color: var(--dark); line-height: 1.75; margin-bottom: 16px; }
+  .dev-body p:last-child { margin-bottom: 0; }
+  .desafio-box { background: #F0FDF4; border: 1.5px solid var(--verde-claro); border-radius: 10px; padding: 16px 20px; margin: 28px 0; }
+  .desafio-box .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--verde-medio); margin-bottom: 8px; }
+  .desafio-box p { font-size: 15px; color: var(--verde-escuro); line-height: 1.65; }
+  .oracao-box { background: var(--dourado-claro); border: 1.5px solid #D4A843; border-radius: 10px; padding: 20px; margin: 8px 0 28px; }
+  .oracao-box .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dourado); margin-bottom: 10px; }
+  .oracao-box p { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: #3A2800; line-height: 1.7; }
+
+  .esboco-intro { font-size: 15px; color: var(--cinza); line-height: 1.7; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #E5E7EB; }
+  .contexto-card { background: var(--verde-escuro); border-radius: 12px; padding: 20px; margin-bottom: 24px; color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7; }
+  .contexto-card h3 { font-family: 'Lora', serif; color: #74C69D; font-size: 16px; margin-bottom: 10px; }
+  .ponto { margin-bottom: 8px; border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; }
+  .ponto-header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; background: var(--white); transition: background .2s; }
+  .ponto-header:hover { background: #F9FAFB; }
+  .ponto-header.open { background: var(--verde-escuro); }
+  .ponto-num { flex-shrink: 0; width: 28px; height: 28px; background: var(--verde-menta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--verde-escuro); transition: all .2s; }
+  .ponto-header.open .ponto-num { background: rgba(82,183,136,0.25); color: #74C69D; }
+  .ponto-titulo { flex: 1; font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.3; transition: color .2s; }
+  .ponto-header.open .ponto-titulo { color: #fff; }
+  .ponto-chevron { flex-shrink: 0; font-size: 18px; color: var(--cinza); transition: transform .25s, color .2s; }
+  .ponto-header.open .ponto-chevron { transform: rotate(180deg); color: #74C69D; }
+  .ponto-body { display: none; padding: 0 20px 20px; background: var(--white); border-top: 1px solid #F3F4F6; }
+  .ponto-body.open { display: block; }
+  .ponto-versiculo { background: var(--verde-menta); border-left: 3px solid var(--verde-claro); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 16px 0; font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--verde-escuro); line-height: 1.6; }
+  .ponto-versiculo .ref { display: block; margin-top: 6px; font-size: 11px; font-weight: 700; font-style: normal; color: var(--verde-medio); letter-spacing: .5px; }
+  .ponto-body p { font-size: 15px; color: var(--mid); line-height: 1.72; margin-bottom: 12px; }
+  .ponto-body p:last-child { margin-bottom: 0; }
+  .conexao-box { background: #FFF8E7; border-left: 3px solid #D4A843; border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 13px; color: #3A2800; line-height: 1.6; }
+  .conexao-box strong { color: var(--dourado); }
+  .curiosidade-box { background: #F8F9FA; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 13px; color: var(--mid); line-height: 1.6; }
+  .curiosidade-box strong { color: var(--verde-medio); }
+  .citacao-box { background: #F0FDF4; border-left: 3px solid var(--verde-claro); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-family: 'Lora', serif; font-size: 14px; font-style: italic; color: var(--verde-escuro); line-height: 1.6; }
+
+  .page-footer { background: var(--verde-escuro); padding: 28px 24px; text-align: center; }
+  .page-footer p { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+  .page-footer small { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 06</div>
+    <h1>Um lugar chamado <em>Betânia</em></h1>
+    <p class="hero-sub">Lucas 10.38–42 · João 11 · Pr. Jorge Marcos Fonseca</p>
+    <p class="hero-ref">Igreja Batista da Freguesia da Ilha — 19 de julho de 2026</p>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('devocional',this)">Devocional</button>
+      <button class="tab-btn" onclick="showTab('esboco',this)">Esboço</button>
+    </div>
+  </div>
+</div>
+
+<div class="yt-section">
+  <a class="yt-btn" href="https://www.youtube.com/watch?v=rC2XkYG5mss" target="_blank">
+    <span class="yt-icon">▶</span>
+    <span class="yt-label">
+      <span>Assista à mensagem completa</span>
+      <span>Um lugar chamado Betânia · IBF</span>
+    </span>
+  </a>
+</div>
+
+<div class="content">
+
+  <!-- DEVOCIONAL -->
+  <div id="devocional" class="section active">
+    <p class="section-title">Devocional</p>
+    <div class="section-divider"></div>
+
+    <div class="dev-gancho">
+      Tem uma pergunta que ficou comigo depois dessa mensagem. Não é "onde está a minha Betânia?" — é outra: de quem eu sou uma Betânia hoje?
+    </div>
+
+    <div class="sec-label">A palavra que ficou</div>
+    <div class="versiculo-box">
+      <p>"Jesus chorou."</p>
+      <span class="ref">João 11.35</span>
+    </div>
+
+    <div class="sec-label">O que eu quero compartilhar com você</div>
+    <div class="dev-body">
+      <p>Eu trouxe um dado da OMS no domingo que me impactou quando li: solidão faz o mesmo estrago que fumar cinco cigarros por dia. Cinco. Por dia. Numa geração conectada em tudo, nunca estivemos tão sozinhos.</p>
+      <p>Betânia era a resposta de Jesus para isso. Uma aldeia a 3 km de Jerusalém — a cidade da pressão, das cobranças, das armadilhas religiosas. E toda noite da última semana da sua vida, Jesus voltava para lá. Para a casa de Maria, Marta e Lázaro. Para um lugar onde ele podia ser ele mesmo.</p>
+      <p>O versículo mais curto da Bíblia está nessa história: "Jesus chorou." Não em Jerusalém. Em Betânia. Diante do túmulo do amigo. Aqui está algo que não saiu da minha cabeça: Jesus sabia que ia ressuscitar Lázaro daqui a instantes. E ainda assim chorou. Porque Betânia era o lugar onde os sentimentos podiam ser reais — sem precisar manter a performance.</p>
+      <p>Eu contei sobre uma viagem que fiz a Maceió com a Lis num momento muito difícil. Os amigos que nos receberam lá foram a nossa Betânia. Não resolveram nada. Só estiveram. E às vezes é isso que transforma.</p>
+      <p>A pergunta que quero deixar com você esta semana não é "você tem uma Betânia?" É: <em>você é uma Betânia para alguém?</em></p>
+    </div>
+
+    <div class="desafio-box">
+      <div class="label">Esta semana</div>
+      <p>Pensa em alguém que está passando por uma semana difícil. Não manda uma mensagem genérica. Faz contato de verdade — pergunta, escuta, esteja presente. Seja Betânia para essa pessoa.</p>
+    </div>
+
+    <div class="oracao-box">
+      <div class="label">Vamos orar juntos</div>
+      <p>Senhor, me perdoa pelas vezes que estive presente fisicamente mas ausente de verdade. Que eu aprenda com Maria a sentar e escutar. Com Marta a servir com amor. E com Jesus a chorar junto com quem chora. Que eu seja uma Betânia para alguém esta semana. Amém.</p>
+    </div>
+  </div>
+
+  <!-- ESBOÇO -->
+  <div id="esboco" class="section">
+    <p class="section-title">Esboço de Estudo</p>
+    <div class="section-divider"></div>
+
+    <p class="esboco-intro">Por baixo de cada pregação há horas de estudo. Aqui você encontra o contexto, os pontos desenvolvidos e o que o tempo do culto não permite aprofundar.</p>
+
+    <div class="contexto-card">
+      <h3>Betânia e Jerusalém — dois mundos a 3 km de distância</h3>
+      <p>Jerusalém era o centro do poder religioso: templo, escribas, fariseus, tensão constante. Jesus era questionado lá, testado lá, ameaçado lá. Betânia ficava a apenas 3 km — uma hora a pé — e era o oposto: uma casa, uma família, escuta, descanso. Durante a semana da Paixão, Jesus entrava em Jerusalém para ensinar e voltava para Betânia toda noite. Ele sabia que precisava dos dois, mas que não podia viver só do primeiro.</p>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">1</div>
+        <span class="ponto-titulo">Acolhimento sem perfeição — Maria e Marta</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Marta o recebeu em sua casa. Ela tinha uma irmã chamada Maria, a qual, sentando-se aos pés do Senhor, escutava a sua palavra."
+          <span class="ref">Lucas 10.38–39</span>
+        </div>
+        <p>Maria e Marta eram opostas. Uma contemplativa, a outra ativa. Uma sentava, a outra servia. E as duas amavam Jesus — e Jesus amava as duas. Betânia acolhia os dois temperamentos sem forçar uniformidade.</p>
+        <p>A repreensão de Jesus a Marta — "Marta, Marta, você está preocupada com muitas coisas" — não foi uma exclusão. Foi uma correção afetuosa. Jesus chamou pelo nome duas vezes, o mesmo padrão de cuidado que usou com Pedro. Em Betânia havia espaço para ser corrigido sem ser rejeitado.</p>
+        <div class="citacao-box">"Uma Betânia de verdade comporta o diferente. Não existe uma só forma de amar Jesus — e Betânia sabia disso."</div>
+        <div class="curiosidade-box">
+          <strong>💡 O "Mini Hermínio":</strong> O pastor compartilhou que no início do ministério era excessivamente crítico — o "Mini Hermínio" da situação. Betânia também o corrigiu com o tempo: o relacionamento genuíno nos ensina a ser mais misericordiosos com as diferenças dos outros.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">2</div>
+        <span class="ponto-titulo">Liberdade para o confronto — quando amor exige honestidade</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Senhor, se o senhor tivesse estado aqui, meu irmão não teria morrido."
+          <span class="ref">João 11.21</span>
+        </div>
+        <p>Marta disse isso para Jesus. E depois Maria chegou e disse exatamente a mesma coisa (Jo 11.32). Duas mulheres confrontaram o Filho de Deus com a mesma acusação — "onde você estava?" — e Jesus não as rejeitou. Respondeu com presença e com lágrimas.</p>
+        <p>Betânia era um lugar onde você podia dizer coisas difíceis para Jesus e para os irmãos sem perder o relacionamento. O confronto amoroso não é exclusão — é o sinal de que o vínculo é real o suficiente para suportar a verdade.</p>
+        <div class="conexao-box">
+          <strong>Da pregação:</strong> "O líder que não escuta, não cresce." A liderança que não comporta o confronto cria comunidades de silêncio — onde as pessoas estão, mas não pertencem.
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">3</div>
+        <span class="ponto-titulo">Vulnerabilidade mútua — Jesus chorou</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Jesus chorou."
+          <span class="ref">João 11.35</span>
+        </div>
+        <p>O versículo mais curto da Bíblia — e um dos mais teologicamente densos. Jesus sabia que ia ressuscitar Lázaro. E ainda assim chorou. Não foi performance. Foi dor real, diante de pessoas reais, num lugar onde ele podia sentir sem precisar manter a autoridade.</p>
+        <p>Isso define o que Betânia era: um lugar onde a liderança podia ser vulnerável. Onde o mais forte da sala podia chorar sem perder o respeito. Uma comunidade onde isso não é possível — onde o líder não pode mostrar fraqueza, onde os membros não podem mostrar dor — não é Betânia. É Jerusalém com outro nome.</p>
+        <div class="curiosidade-box">
+          <strong>💡 Dado da OMS:</strong> A solidão tem o mesmo impacto na saúde que fumar 5 cigarros por dia. Numa geração hiperconectada digitalmente, nunca estivemos tão sozinhos de verdade. Betânia não é luxo espiritual — é necessidade humana.
+        </div>
+        <div class="citacao-box">"Não importa se você desafinar, o que importa é que seu coração esteja no lugar certo, em Jesus."</div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <div class="ponto-header" onclick="togglePonto(this)">
+        <div class="ponto-num">4</div>
+        <span class="ponto-titulo">Descanso fora da produtividade — você vale mais do que produz</span>
+        <span class="ponto-chevron">⌄</span>
+      </div>
+      <div class="ponto-body">
+        <div class="ponto-versiculo">
+          "Jesus saiu e foi, como de costume, para o monte das Oliveiras — e antes voltou para Betânia."
+          <span class="ref">Marcos 11.11 (paráfrase)</span>
+        </div>
+        <p>Betânia era onde Jesus descansava. Não para produzir mais. Não para preparar o próximo sermão. Para estar com amigos que o amavam independente do que ele ia fazer no dia seguinte.</p>
+        <p>Numa cultura de performance — onde as pessoas são valorizadas pelo que entregam, pelo que produzem, pelo quanto aparecem — Betânia é revolucionária. Lá, Jesus era amado pelo que era, não pelo que fazia. É isso que uma comunidade saudável precisa oferecer: um lugar onde você pode aparecer sem ter nada para entregar.</p>
+        <div class="conexao-box">
+          <strong>Ilustração da viagem a Maceió:</strong> O pastor e a Lis passaram por um momento difícil e foram recebidos por amigos. Esses amigos não resolveram nada — só estiveram. Às vezes ser Betânia não é ter as respostas. É abrir a porta.
+        </div>
+        <div class="citacao-box">"A pergunta não é por que a nossa igreja não é Betânia para muita gente? A pergunta é: de quem eu sou uma Betânia hoje?"</div>
+      </div>
+    </div>
+
+    <div style="margin-top:32px;">
+      <p class="sec-label">Conexões bíblicas</p>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;margin-bottom:8px;">
+        <strong>Lucas 24.50–51</strong> — A Ascensão de Jesus acontece perto de Betânia. O último ato do ministério terreno de Jesus foi uma bênção dada entre amigos, no lugar onde ele descansava. Ele encerrou onde pertencia.
+      </div>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;margin-bottom:8px;">
+        <strong>Salmo 116</strong> — "O que darei ao Senhor por todos os seus benefícios?" A gratidão que nasce do acolhimento — o mesmo espírito de Betânia.
+      </div>
+      <div class="conexao-box" style="border-radius:8px;border-left-width:4px;">
+        <strong>Romanos 12.15</strong> — "Alegrem-se com os que se alegram; chorem com os que choram." O mandato de Paulo é a descrição de Betânia em forma de imperativo.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page-footer">
+  <p>"Jesus chorou." — João 11.35</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 06</small>
+</div>
+
+<script>
+  function showTab(id,btn){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+  function togglePonto(header){
+    const body=header.nextElementSibling;
+    const isOpen=body.classList.contains('open');
+    document.querySelectorAll('.ponto-body').forEach(b=>b.classList.remove('open'));
+    document.querySelectorAll('.ponto-header').forEach(h=>h.classList.remove('open'));
+    if(!isOpen){body.classList.add('open');header.classList.add('open');}
+  }
+</script>
+</body>
+</html>
