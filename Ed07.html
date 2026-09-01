@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 07 · Mês da Juventude</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --cinza: #6B7280;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  /* ── HERO ESPECIAL MÊS DA JUVENTUDE ── */
+  .hero {
+    background: linear-gradient(160deg, #0A1F12 0%, #1A4731 45%, #2D6A4F 80%, #3A8A60 100%);
+    padding: 56px 24px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(82,183,136,0.22) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 90%, rgba(139,105,20,0.15) 0%, transparent 45%),
+      radial-gradient(ellipse at 50% 50%, rgba(82,183,136,0.06) 0%, transparent 70%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+
+  .badge-mj {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(139,105,20,0.2);
+    border: 1px solid rgba(201,168,76,0.5);
+    color: #F0D080;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 6px 16px; border-radius: 20px; margin-bottom: 12px;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(82,183,136,0.15);
+    border: 1px solid rgba(82,183,136,0.35);
+    color: #74C69D;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .badge-dot { width: 6px; height: 6px; background: #52B788; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 7vw, 46px);
+    font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 12px;
+  }
+  .hero h1 em { font-style: italic; color: #74C69D; }
+  .hero-sub { font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 4px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(82,183,136,0.75); font-style: italic; margin-bottom: 8px; }
+  .hero-textos { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; margin-bottom: 36px; }
+
+  /* ── CONTENT ── */
+  .content { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ── INTRO PASTORAL ── */
+  .intro-card {
+    background: var(--verde-escuro);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-card::before {
+    content: '❝';
+    position: absolute; top: -10px; left: 20px;
+    font-size: 120px; color: rgba(82,183,136,0.08);
+    font-family: 'Lora', serif; line-height: 1;
+  }
+  .intro-card p {
+    font-family: 'Lora', serif;
+    font-size: 17px; font-style: italic;
+    color: rgba(255,255,255,0.85); line-height: 1.8;
+    position: relative; z-index: 1;
+    margin-bottom: 16px;
+  }
+  .intro-card p:last-child { margin-bottom: 0; }
+  .intro-card .assinatura {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 13px; font-style: normal;
+    color: #74C69D; font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── VERSÍCULO ÂNCORA ── */
+  .versiculo-ancora {
+    background: var(--verde-menta);
+    border-left: 5px solid var(--verde-claro);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 40px 0;
+  }
+  .versiculo-ancora p {
+    font-family: 'Lora', serif;
+    font-size: 17px; font-style: italic;
+    color: var(--verde-escuro); line-height: 1.7;
+    margin-bottom: 10px;
+  }
+  .versiculo-ancora .ref {
+    font-size: 12px; font-weight: 700;
+    color: var(--verde-medio); letter-spacing: 0.5px;
+  }
+
+  /* ── SEÇÃO TÍTULO ── */
+  .sec-header {
+    display: flex; align-items: center; gap: 14px;
+    margin: 56px 0 24px;
+  }
+  .sec-num {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    background: var(--verde-escuro);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 18px; font-weight: 700; color: #74C69D;
+  }
+  .sec-title-block {}
+  .sec-label-small {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--verde-claro);
+    margin-bottom: 2px;
+  }
+  .sec-title {
+    font-family: 'Lora', serif;
+    font-size: 24px; font-weight: 700;
+    color: var(--verde-escuro); line-height: 1.2;
+  }
+  .sec-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--verde-claro), transparent);
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  /* ── CORPO DO TEXTO ── */
+  .body-text p {
+    font-size: 17px;
+    color: var(--dark);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+  .body-text p:last-child { margin-bottom: 0; }
+  .body-text p em { font-style: italic; color: var(--verde-medio); }
+  .body-text p strong { font-weight: 700; color: var(--verde-escuro); }
+
+  /* ── FRASE DESTAQUE ── */
+  .frase-destaque {
+    font-family: 'Lora', serif;
+    font-size: 18px; font-style: italic;
+    color: var(--verde-escuro);
+    border-left: 4px solid var(--verde-claro);
+    padding: 14px 20px;
+    margin: 28px 0;
+    background: #F0FDF4;
+    border-radius: 0 10px 10px 0;
+    line-height: 1.65;
+  }
+
+  /* ── CITAÇÃO BÍBLICA ── */
+  .citacao-biblica {
+    background: #EFF6FF;
+    border-left: 4px solid #60A5FA;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+  .citacao-biblica p {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-style: italic;
+    color: #1E3A5F; line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .citacao-biblica .ref {
+    font-size: 12px; font-weight: 700;
+    color: #3B82F6; letter-spacing: 0.5px;
+  }
+
+  /* ── PALAVRAS EM DESTAQUE ── */
+  .palavra-card {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-family: 'Lora', serif;
+    font-size: 20px; font-weight: 700; font-style: italic;
+    margin: 4px;
+  }
+  .palavra-permaneça { background: var(--verde-menta); color: var(--verde-escuro); }
+  .palavra-vai { background: var(--dourado-claro); color: #5A3A00; }
+
+  /* ── DIVISOR ESPECIAL ── */
+  .divisor-especial {
+    text-align: center;
+    margin: 56px 0;
+    color: var(--verde-claro);
+    font-size: 20px;
+    letter-spacing: 8px;
+  }
+
+  /* ── CARD DOS JOVENS ── */
+  .jovens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+  @media (max-width: 480px) { .jovens-grid { grid-template-columns: 1fr; } }
+  .jovem-card {
+    border-radius: 12px;
+    padding: 20px;
+    border: 1.5px solid;
+  }
+  .jovem-card.mestre {
+    background: #F0FDF4;
+    border-color: var(--verde-claro);
+  }
+  .jovem-card.evangelista {
+    background: var(--dourado-claro);
+    border-color: #D4A843;
+  }
+  .jovem-card .nome {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .jovem-card.mestre .nome { color: var(--verde-medio); }
+  .jovem-card.evangelista .nome { color: var(--dourado); }
+  .jovem-card .chamado {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .jovem-card.mestre .chamado { color: var(--verde-escuro); }
+  .jovem-card.evangelista .chamado { color: #5A3A00; }
+  .jovem-card .descricao {
+    font-size: 14px; line-height: 1.6; color: var(--mid);
+  }
+
+  /* ── SEÇÃO REFLEXÃO ── */
+  .reflexao-box {
+    background: var(--verde-escuro);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 48px 0 32px;
+  }
+  .reflexao-box .titulo {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #74C69D;
+    margin-bottom: 20px;
+  }
+  .reflexao-item {
+    display: flex; gap: 12px;
+    margin-bottom: 18px;
+  }
+  .reflexao-item:last-child { margin-bottom: 0; }
+  .reflexao-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: rgba(82,183,136,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #74C69D;
+    margin-top: 2px;
+  }
+  .reflexao-item p {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-style: italic;
+    color: rgba(255,255,255,0.85); line-height: 1.7;
+  }
+
+  /* ── ORAÇÃO ── */
+  .oracao-box {
+    background: var(--dourado-claro);
+    border: 1.5px solid #D4A843;
+    border-radius: 16px;
+    padding: 32px;
+    margin: 32px 0;
+  }
+  .oracao-box .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--dourado);
+    margin-bottom: 20px;
+  }
+  .oracao-box p {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-style: italic;
+    color: #3A2800; line-height: 1.85;
+    margin-bottom: 12px;
+  }
+  .oracao-box p:last-child { margin-bottom: 0; }
+
+  /* ── VERSO FINAL ── */
+  .verso-final {
+    text-align: center;
+    margin: 48px 0 0;
+    padding: 32px 24px;
+    border-top: 1px solid #E5E7EB;
+  }
+  .verso-final .versiculo {
+    font-family: 'Lora', serif;
+    font-size: 18px; font-style: italic;
+    color: var(--verde-escuro);
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+  .verso-final .ref {
+    font-size: 13px; font-weight: 700;
+    color: var(--verde-claro); letter-spacing: 0.5px;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: var(--verde-escuro);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .page-footer .mj-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #F0D080;
+    margin-bottom: 8px;
+  }
+  .page-footer p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 14px; color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+  }
+  .page-footer small {
+    font-size: 11px; color: rgba(255,255,255,0.3);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge-mj">🌿 Agosto · Mês da Juventude Batista</div>
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 07</div>
+    <h1>O Mestre e <em>o Evangelista</em></h1>
+    <p class="hero-sub">Uma reflexão sobre discipulado, missão e o pastor que aprende a diminuir</p>
+    <p class="hero-ref">Pr. Jorge Marcos Fonseca · IBF</p>
+    <p class="hero-textos">João 15.1–17 · Lucas 19.1–10 · Efésios 4.11–13</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- INTRO PASTORAL -->
+  <div class="intro-card">
+    <p>Há algum tempo, um livro chamado <em>O Pastor Desnecessário</em> me encontrou em um momento muito específico da minha caminhada ministerial.</p>
+    <p>Eu estava cansado. E, naquele período, comecei a perceber que parte daquele cansaço também precisava produzir em mim uma reflexão sobre a maneira como eu pastoreava. Eu precisava aprender a dividir, ensinar, confiar e dar espaço.</p>
+    <p>A ideia de um "pastor desnecessário" pode soar estranha. Afinal, quem deseja ser desnecessário? Mas comecei a compreender que existe uma diferença entre ser importante na caminhada de alguém e fazer com que essa pessoa dependa de nós para caminhar.</p>
+    <p class="assinatura">— Pr. Jorge Marcos Fonseca</p>
+  </div>
+
+  <!-- VERSÍCULO ÂNCORA -->
+  <div class="versiculo-ancora">
+    <p>"E ele mesmo concedeu uns para apóstolos, outros para profetas, outros para evangelistas e outros para pastores e mestres, com vistas ao aperfeiçoamento dos santos para o desempenho do seu serviço..."</p>
+    <span class="ref">Efésios 4.11–12</span>
+  </div>
+
+  <!-- SEÇÃO 1 — O MESTRE -->
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">João 15.1–17</div>
+      <div class="sec-title">O Mestre</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Jhon pregou em João 15. Falou sobre uma planta chamada Igreja. Falou sobre poda, permanência, fruto e amor. E uma de suas afirmações resumiu muito bem sua mensagem:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Ser igreja é tão simplesmente obedecer a Jesus e amar uns aos outros sem fingimento."
+  </div>
+
+  <div class="body-text">
+    <p>Jhon nos levou para dentro. Para as raízes. Para a necessidade de permanecer.</p>
+  </div>
+
+  <div class="citacao-biblica">
+    <p>"Eu sou a videira, vocês são os ramos. Quem permanece em mim, e eu, nele, esse dá muito fruto; porque sem mim vocês não podem fazer nada."</p>
+    <span class="ref">João 15.5</span>
+  </div>
+
+  <div class="body-text">
+    <p>Antes de aparecer, permaneça. Antes de produzir, permaneça. Antes de ensinar, permaneça. Antes de liderar, permaneça.</p>
+    <p>Porque ninguém sustenta um ministério apenas com talento. <strong>Ramos não produzem vida. Ramos recebem vida da videira.</strong></p>
+    <p>Naquela manhã, olhando para Jhon, eu enxerguei um jovem sendo usado por Deus para ensinar a Igreja.</p>
+    <p>O mestre nos dizia: <em>Permaneçam em Jesus.</em></p>
+  </div>
+
+  <!-- SEÇÃO 2 — O EVANGELISTA -->
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Lucas 19.1–10</div>
+      <div class="sec-title">O Evangelista</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Então Alex nos levou para Lucas 19. Se Jhon nos levou para dentro, Alex nos fez olhar para fora.</p>
+    <p>Havia um homem chamado Zaqueu tentando enxergar Jesus. Um homem rejeitado, rotulado e provavelmente acostumado aos olhares de reprovação das pessoas. Mas Jesus olhou para ele de maneira diferente.</p>
+    <p>Alex resumiu sua mensagem em uma frase:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "O que nós temos de melhor hoje é Jesus, e nós precisamos levar Jesus para quem não conhece Jesus."
+  </div>
+
+  <div class="body-text">
+    <p>É simples. Mas talvez tenhamos complicado demais aquilo que deveria ser o coração da Igreja.</p>
+    <p>Existe gente procurando esperança. Existe gente tentando enxergar Jesus. Existe gente que talvez nunca entre espontaneamente em nossos templos.</p>
+  </div>
+
+  <div class="citacao-biblica">
+    <p>"Zaqueu, desça depressa, porque hoje preciso ficar na sua casa."</p>
+    <span class="ref">Lucas 19.5</span>
+  </div>
+
+  <div class="body-text">
+    <p>O encontro veio antes da transformação. E a transformação aconteceu porque Jesus chegou.</p>
+    <p>Naquela noite, olhando para Alex, eu enxerguei um jovem sendo usado por Deus para lembrar à Igreja que existem pessoas que precisam conhecer Jesus.</p>
+    <p>O evangelista nos dizia: <em>Levem Jesus.</em></p>
+  </div>
+
+  <!-- SEÇÃO 3 — PERMANEÇA E VÁ -->
+  <div class="divisor-especial">· · ·</div>
+
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">A síntese</div>
+      <div class="sec-title">Permaneça. E Vá.</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Então percebi algo bonito nas duas mensagens.</p>
+  </div>
+
+  <div style="text-align:center; margin: 28px 0;">
+    <span class="palavra-card palavra-permaneça">Permaneça.</span>
+    <span class="palavra-card palavra-vai">Vá.</span>
+  </div>
+
+  <div class="body-text">
+    <p>Não existe contradição entre essas duas palavras. Na verdade, uma depende da outra.</p>
+    <p><strong>Só podemos levar Jesus se permanecermos em Jesus.</strong> E quem verdadeiramente permanece em Jesus não consegue permanecer indiferente às pessoas que ainda precisam conhecê-lo.</p>
+    <p>Uma Igreja saudável cria raízes profundas em Cristo e estende seus ramos em direção às pessoas. Ela permanece. E ela vai. Ela é ensinada. E ela anuncia.</p>
+  </div>
+
+  <div class="jovens-grid">
+    <div class="jovem-card mestre">
+      <div class="nome">Jhon · O Mestre</div>
+      <div class="chamado">João 15 — A Videira</div>
+      <div class="descricao">Nos levou às raízes. À necessidade de permanecer antes de produzir.</div>
+    </div>
+    <div class="jovem-card evangelista">
+      <div class="nome">Alex · O Evangelista</div>
+      <div class="chamado">Lucas 19 — Zaqueu</div>
+      <div class="descricao">Nos fez olhar para fora. Para quem ainda precisa conhecer Jesus.</div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4 — PASTOR DESNECESSÁRIO -->
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Efésios 4.11–13</div>
+      <div class="sec-title">Quando o pastor se torna desnecessário</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Naquele domingo, enquanto dois jovens pregaram — um de manhã, outro de noite — e eu estive sentado ouvindo, pensei novamente naquela ideia que havia me confrontado tempos atrás.</p>
+    <p><strong>Eu quero me tornar desnecessário.</strong> Não no sentido de abandonar minha responsabilidade pastoral. Mas no sentido de não construir uma juventude que dependa da minha presença para funcionar.</p>
+    <p>Eu quero vê-los maduros. Quero vê-los tomando decisões. Quero vê-los ensinando outros. Quero vê-los pregando melhor do que eu. Quero vê-los chegando a lugares onde eu jamais chegarei.</p>
+    <p>Porque meu chamado não é fazer com que precisem de mim para sempre.</p>
+    <p><em>Meu chamado é ajudá-los a perceber que precisam de Jesus para sempre.</em></p>
+  </div>
+
+  <div class="citacao-biblica">
+    <p>"É necessário que ele cresça e que eu diminua."</p>
+    <span class="ref">João 3.30</span>
+  </div>
+
+  <div class="body-text">
+    <p>No final das contas, não precisamos de jovens que se pareçam conosco. <strong>Precisamos de jovens que se pareçam com Jesus.</strong></p>
+    <p>Por isso, naquele domingo, Deus não levantou duas cópias do pastor. Ele levantou Jhon e Alex. Diferentes. Com personalidades diferentes. Com maneiras diferentes de comunicar. Com histórias diferentes.</p>
+    <p>E eu tive o privilégio de estar sentado ouvindo os dois.</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Talvez algumas das maiores evidências de que uma semente germinou apareçam justamente quando já não precisamos segurá-la em nossas mãos."
+  </div>
+
+  <div class="body-text">
+    <p>Jhon, continue ensinando. Alex, continue anunciando. Cresçam. Amadureçam. Sirvam. Errem. Aprendam. Tentem novamente. Descubram os dons que Deus colocou em vocês.</p>
+    <p>E, se um dia vocês chegarem ao ponto de não precisarem mais de mim para caminhar, não enxergarei isso como uma perda. <strong>Enxergarei como fruto.</strong></p>
+  </div>
+
+  <!-- REFLEXÃO -->
+  <div class="reflexao-box">
+    <div class="titulo">Para refletir</div>
+    <div class="reflexao-item">
+      <div class="reflexao-num">1</div>
+      <p>Tenho ajudado pessoas a amadurecer ou tenho criado pessoas dependentes de mim?</p>
+    </div>
+    <div class="reflexao-item">
+      <div class="reflexao-num">2</div>
+      <p>Consigo abrir espaço para que outros apareçam, inclusive quando fazem as coisas de uma maneira diferente da minha?</p>
+    </div>
+    <div class="reflexao-item">
+      <div class="reflexao-num">3</div>
+      <p>E, acima de tudo: se algumas pessoas deixarem de precisar de mim, mas aprenderem a depender cada vez mais de Jesus, isso será suficiente para mim?</p>
+    </div>
+  </div>
+
+  <!-- ORAÇÃO -->
+  <div class="oracao-box">
+    <div class="label">Oração</div>
+    <p>Senhor, ensina-nos a permanecer em Ti e a levar o teu amor às pessoas.</p>
+    <p>Dá-nos humildade para reconhecer os dons que colocaste nos outros e coragem para abrir espaço para que eles cresçam.</p>
+    <p>Livra-nos da necessidade de sermos indispensáveis.</p>
+    <p>Que nossa alegria não esteja em sermos necessários, mas em vermos pessoas amadurecendo, servindo, ensinando, anunciando e se tornando cada vez mais parecidas com Jesus.</p>
+    <p>Que Ele cresça. E que nós diminuamos.</p>
+    <p><strong>Amém.</strong></p>
+  </div>
+
+  <!-- VERSO FINAL -->
+  <div class="verso-final">
+    <div class="versiculo">"Sem mim vocês não podem fazer nada."</div>
+    <div class="ref">João 15.5</div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <div class="mj-tag">🌿 Agosto 2026 · Mês da Juventude Batista</div>
+  <p>"Que Ele cresça. E que nós diminuamos." — João 3.30</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 07</small>
+</div>
+
+</body>
+</html>
