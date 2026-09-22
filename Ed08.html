@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 08</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-escuro: #0D1F3C;
+    --azul-medio: #1E3A5F;
+    --azul-claro: #3B82F6;
+    --azul-menta: #EFF6FF;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --bg: #F8FAFC;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #060E1C 0%, #0D1F3C 50%, #1E3A5F 100%);
+    padding: 56px 24px 64px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 75% 15%, rgba(59,130,246,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse at 15% 85%, rgba(139,105,20,0.12) 0%, transparent 45%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.35);
+    color: #93C5FD;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .badge-dot { width: 6px; height: 6px; background: #60A5FA; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 7vw, 46px);
+    font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 12px;
+  }
+  .hero h1 em { font-style: italic; color: #93C5FD; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(147,197,253,0.7); font-style: italic; margin-bottom: 8px; }
+  .hero-textos { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.5px; }
+
+  /* ── CONTENT ── */
+  .content { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ── VERSÍCULO ÂNCORA ── */
+  .versiculo-ancora {
+    background: var(--azul-menta);
+    border-left: 5px solid var(--azul-claro);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px; margin: 40px 0;
+  }
+  .versiculo-ancora p {
+    font-family: 'Lora', serif;
+    font-size: 17px; font-style: italic;
+    color: var(--azul-escuro); line-height: 1.7; margin-bottom: 10px;
+  }
+  .versiculo-ancora .ref {
+    font-size: 12px; font-weight: 700;
+    color: var(--azul-claro); letter-spacing: 0.5px;
+  }
+
+  /* ── NOTA DO PASTOR ── */
+  .nota-pastor {
+    background: var(--azul-escuro);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 48px;
+    position: relative; overflow: hidden;
+  }
+  .nota-pastor::before {
+    content: '❝'; position: absolute; top: -10px; left: 20px;
+    font-size: 120px; color: rgba(59,130,246,0.08);
+    font-family: 'Lora', serif; line-height: 1;
+  }
+  .nota-pastor .nota-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #93C5FD; margin-bottom: 14px;
+  }
+  .nota-pastor p {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-style: italic;
+    color: rgba(255,255,255,0.85); line-height: 1.8;
+    position: relative; z-index: 1; margin-bottom: 14px;
+  }
+  .nota-pastor p:last-child { margin-bottom: 0; }
+
+  /* ── SEÇÃO ── */
+  .sec-header { display: flex; align-items: center; gap: 14px; margin: 52px 0 20px; }
+  .sec-num {
+    flex-shrink: 0; width: 44px; height: 44px;
+    background: var(--azul-escuro); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: #93C5FD;
+  }
+  .sec-label-small {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--azul-claro); margin-bottom: 2px;
+  }
+  .sec-title {
+    font-family: 'Lora', serif;
+    font-size: 22px; font-weight: 700; color: var(--azul-escuro); line-height: 1.2;
+  }
+  .sec-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--azul-claro), transparent);
+    border-radius: 2px; margin-bottom: 24px;
+  }
+
+  /* ── CORPO ── */
+  .body-text p {
+    font-size: 17px; color: var(--dark); line-height: 1.85; margin-bottom: 20px;
+  }
+  .body-text p:last-child { margin-bottom: 0; }
+  .body-text strong { font-weight: 700; color: var(--azul-escuro); }
+  .body-text em { font-style: italic; color: var(--azul-medio); }
+
+  /* ── VERSÍCULO INLINE ── */
+  .v-inline {
+    background: var(--azul-menta);
+    border-left: 3px solid var(--azul-claro);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px; margin: 20px 0;
+    font-family: 'Lora', serif; font-size: 16px; font-style: italic;
+    color: var(--azul-escuro); line-height: 1.65;
+  }
+  .v-inline .ref {
+    display: block; margin-top: 8px;
+    font-size: 11px; font-weight: 700; font-style: normal;
+    color: var(--azul-claro); letter-spacing: 0.5px;
+  }
+
+  /* ── FRASE DESTAQUE ── */
+  .frase-destaque {
+    font-family: 'Lora', serif; font-size: 18px; font-style: italic;
+    color: var(--azul-escuro);
+    border-left: 4px solid var(--azul-claro);
+    padding: 14px 20px; margin: 28px 0;
+    background: var(--azul-menta);
+    border-radius: 0 10px 10px 0; line-height: 1.65;
+  }
+
+  /* ── REFLEXÃO INLINE ── */
+  .reflexao-inline {
+    background: #F8FAFF;
+    border: 1.5px solid #BFDBFE;
+    border-radius: 10px; padding: 16px 20px; margin: 24px 0;
+  }
+  .reflexao-inline .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--azul-claro); margin-bottom: 10px;
+  }
+  .reflexao-inline p {
+    font-family: 'Lora', serif; font-size: 15px; font-style: italic;
+    color: var(--azul-medio); line-height: 1.7; margin-bottom: 8px;
+  }
+  .reflexao-inline p:last-child { margin-bottom: 0; }
+
+  /* ── DIVISOR ── */
+  .divisor { text-align: center; margin: 52px 0; color: var(--azul-claro); font-size: 20px; letter-spacing: 8px; }
+
+  /* ── SEÇÃO DE ESTUDO ── */
+  .estudo-box {
+    background: var(--azul-escuro); border-radius: 16px; padding: 32px; margin: 48px 0;
+  }
+  .estudo-box .titulo {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #93C5FD; margin-bottom: 8px;
+  }
+  .estudo-box .subtitulo {
+    font-family: 'Lora', serif; font-size: 18px; font-weight: 700;
+    color: #fff; margin-bottom: 20px; line-height: 1.3;
+  }
+  .estudo-instrucao {
+    font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 20px;
+  }
+  .estudo-leitura {
+    background: rgba(59,130,246,0.1); border-radius: 10px; padding: 16px 20px; margin-bottom: 20px;
+  }
+  .estudo-leitura p {
+    font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 8px;
+  }
+  .estudo-leitura p:last-child { margin-bottom: 0; }
+  .estudo-leitura strong { color: #93C5FD; }
+  .pergunta-num { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+  .pergunta-num .num {
+    flex-shrink: 0; width: 24px; height: 24px;
+    background: rgba(59,130,246,0.2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: #93C5FD; margin-top: 2px;
+  }
+  .pergunta-num p {
+    font-family: 'Lora', serif; font-size: 15px; font-style: italic;
+    color: rgba(255,255,255,0.85); line-height: 1.7;
+  }
+
+  /* ── ORAÇÃO ── */
+  .oracao-box {
+    background: var(--dourado-claro); border: 1.5px solid #D4A843;
+    border-radius: 16px; padding: 32px; margin: 32px 0;
+  }
+  .oracao-box .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--dourado); margin-bottom: 20px;
+  }
+  .oracao-box p {
+    font-family: 'Lora', serif; font-size: 16px; font-style: italic;
+    color: #3A2800; line-height: 1.85; margin-bottom: 14px;
+  }
+  .oracao-box p:last-child { margin-bottom: 0; }
+  .oracao-box strong { font-style: normal; color: var(--dourado); }
+
+  /* ── FRASE FINAL ── */
+  .frase-final {
+    background: var(--azul-escuro); border-radius: 12px;
+    padding: 28px 32px; margin: 32px 0; text-align: center;
+  }
+  .frase-final p {
+    font-family: 'Lora', serif; font-size: 18px; font-style: italic;
+    color: rgba(255,255,255,0.9); line-height: 1.7;
+  }
+  .frase-final .ref {
+    margin-top: 12px; font-size: 12px; font-weight: 700;
+    color: #93C5FD; letter-spacing: 0.5px;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer { background: var(--azul-escuro); padding: 32px 24px; text-align: center; }
+  .page-footer p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+  }
+  .page-footer small {
+    font-size: 11px; color: rgba(255,255,255,0.3);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 08</div>
+    <h1>Quando a razão <em>encontra a fé</em></h1>
+    <p class="hero-sub">Uma reflexão sobre confiar quando não conseguimos controlar</p>
+    <p class="hero-ref">Mensagem: Pr. Beiriz · Anotações: Pr. Jorge Marcos Fonseca</p>
+    <p class="hero-textos">Mateus 14.22–33 · IBF Freguesia · 20/09/2026</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- VERSÍCULO ÂNCORA -->
+  <div class="versiculo-ancora">
+    <p>"Mas Jesus imediatamente lhes disse: Coragem! Sou eu. Não tenham medo!"</p>
+    <span class="ref">Mateus 14.27</span>
+  </div>
+
+  <!-- NOTA DO PASTOR -->
+  <div class="nota-pastor">
+    <div class="nota-label">Uma palavra do pastor Jorge</div>
+    <p>Essa pregação não é minha. Quem pregou foi o Pr. Beiriz — meu sogro — no culto do último domingo na IBF Freguesia.</p>
+    <p>Mas a mensagem falou ao meu coração de um jeito que eu precisei parar, sentar e escrever. Estas são as minhas anotações a partir do que ouvi. Não como resumo — como reflexão de quem foi tocado pelo texto e quis continuar caminhando dentro dele.</p>
+    <p>Se você também estava lá, talvez isso ajude a regar o que foi plantado. Se não estava, espero que o texto de Mateus 14 fale com você do mesmo jeito que falou comigo.</p>
+  </div>
+
+  <!-- SEÇÃO 1 -->
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Mateus 14.28–30</div>
+      <div class="sec-title">O vento é real</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Pedro não imaginou a tempestade.</p>
+    <p>O vento existia. As ondas existiam. O perigo existia. Como pescador, Pedro conhecia muito bem o mar — provavelmente sabia melhor do que muitos naquele barco o que aquelas condições significavam.</p>
+    <p><strong>A fé não exigiu que Pedro negasse a realidade.</strong></p>
+    <p>Da mesma maneira, confiar em Deus não significa ignorar responsabilidades, família, sustento, futuro ou consequências. A fé cristã não precisa transformar preocupações legítimas em falta de espiritualidade.</p>
+    <p>O problema não estava em Pedro perceber o vento. Mateus diz:</p>
+  </div>
+
+  <div class="v-inline">
+    "Reparando, porém, na força do vento, teve medo..."
+    <span class="ref">Mateus 14.30</span>
+  </div>
+
+  <div class="body-text">
+    <p>O vento continuava sendo apenas vento enquanto Cristo permanecia sendo a referência de Pedro. Mas, quando aquilo que estava ao redor passou a determinar sua confiança, o medo assumiu outro lugar.</p>
+  </div>
+
+  <div class="reflexao-inline">
+    <div class="label">Para refletir</div>
+    <p>Quais são os meus "ventos" hoje?</p>
+    <p>O que é uma preocupação legítima — e o que já se transformou em medo?</p>
+  </div>
+
+  <!-- SEÇÃO 2 -->
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Mateus 14.28–29</div>
+      <div class="sec-title">Pedro não saiu do barco por coragem</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Existe algo importante nesse texto.</p>
+    <p>Pedro não decidiu espontaneamente fazer algo arriscado para demonstrar sua fé. Ele disse:</p>
+  </div>
+
+  <div class="v-inline">
+    "Senhor, se és tu, manda-me ir ao teu encontro por sobre as águas."
+    <span class="ref">Mateus 14.28</span>
+  </div>
+
+  <div class="body-text">
+    <p>E Jesus respondeu: <em>"Venha."</em> Só então Pedro saiu.</p>
+    <p><strong>Isso muda tudo.</strong></p>
+    <p>Fé não é escolher a alternativa mais arriscada. Fé não é agir impulsivamente e esperar que Deus resolva depois. <strong>Fé é responder àquele que chama.</strong></p>
+    <p>Por isso, antes da pergunta "Tenho coragem de sair do barco?", existe outra muito mais importante:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Tenho ouvido claramente aquele que está me chamando?"
+  </div>
+
+  <div class="body-text">
+    <p>Se Cristo não chamou, permanecer no barco pode ser sabedoria. Mas, se Cristo chamou, o barco pode deixar de representar prudência e começar a representar segurança.</p>
+  </div>
+
+  <div class="reflexao-inline">
+    <div class="label">Para refletir</div>
+    <p>Por que acredito que Deus está me conduzindo nessa direção?</p>
+    <p>Quais experiências, textos bíblicos, orações e circunstâncias foram formando essa convicção?</p>
+    <p>Essa convicção permanece mesmo quando minhas emoções mudam?</p>
+  </div>
+
+  <!-- SEÇÃO 3 -->
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Abraão · Moisés · Gideão · Pedro</div>
+      <div class="sec-title">A razão pode acompanhar a fé — ela só não pode ocupar o lugar de Deus</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Não preciso abandonar minha capacidade de pensar para confiar.</p>
+    <p>Posso calcular. Posso planejar. Posso conversar. Posso fazer orçamento. Posso procurar conselho. Posso pensar nas consequências. <strong>Tudo isso pode fazer parte da obediência.</strong></p>
+    <p>O perigo começa quando estabeleço uma condição:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Só obedecerei quando conseguir garantir que tudo dará certo."
+  </div>
+
+  <div class="body-text">
+    <p>Talvez essa garantia nunca exista.</p>
+    <p>Abraão recebeu uma promessa sem conhecer todo o caminho. Moisés apresentou suas limitações diante do chamado. Gideão desejou confirmações. Pedro conhecia perfeitamente as limitações impostas pelo mar.</p>
+    <p>Em diferentes histórias, aparece a mesma tensão humana: queremos compreender o caminho inteiro antes de caminhar. Mas frequentemente <strong>Deus fornece luz suficiente para o próximo passo — não um mapa completo da jornada.</strong></p>
+  </div>
+
+  <div class="reflexao-inline">
+    <div class="label">Para refletir</div>
+    <p>Estou utilizando minha razão para organizar minha obediência — ou para adiá-la?</p>
+    <p>Que garantia estou esperando receber antes de obedecer?</p>
+  </div>
+
+  <!-- SEÇÃO 4 -->
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Mateus 14.27</div>
+      <div class="sec-title">"Sou eu. Não tenham medo."</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Antes de Jesus dizer "venha", ele disse algo ainda mais importante: <strong>"Sou eu."</strong></p>
+    <p>Essa talvez seja a frase central da passagem. A segurança de Pedro não estava na ausência da tempestade. Também não estava em sua própria capacidade. Estava na identidade daquele que estava no meio da tempestade.</p>
+    <p>Talvez eu esteja fazendo muitas perguntas: "Como será?", "E se não der certo?", "Como vou sustentar minha casa?", "E depois?", "E se eu estiver errado?"</p>
+    <p>São perguntas importantes. Mas existe uma pergunta anterior a todas elas:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Quem é aquele em quem estou confiando?"
+  </div>
+
+  <div class="body-text">
+    <p>A fé não é confiança de que todos os meus planos funcionarão. É confiança em Deus quando ainda não consigo compreender completamente aquilo que Ele está realizando.</p>
+  </div>
+
+  <!-- SEÇÃO 5 -->
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Mateus 14.30</div>
+      <div class="sec-title">O medo não precisa desaparecer antes da obediência</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Pedro teve medo. Moisés teve medo. Gideão teve medo.</p>
+    <p>Os personagens bíblicos não são apresentados como pessoas que chegaram a um nível espiritual em que simplesmente deixaram de experimentar insegurança.</p>
+    <p>Por isso, talvez coragem não seja chegar ao ponto em que já não sinto medo. Talvez coragem seja conseguir dizer:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Estou com medo, Senhor. Mas continuo confiando em Ti."
+  </div>
+
+  <div class="body-text">
+    <p>Isso muda minha oração. Em vez de "Deus, retire todas as incertezas para que eu consiga obedecer", talvez:</p>
+    <p><em>"Deus, dá-me clareza para reconhecer tua voz, sabedoria para preparar aquilo que precisa ser preparado e coragem para obedecer mesmo quando eu não conseguir controlar todas as consequências."</em></p>
+  </div>
+
+  <div class="divisor">· · ·</div>
+
+  <!-- SEÇÃO DE ESTUDO -->
+  <div class="estudo-box">
+    <div class="titulo">Para estudar com calma</div>
+    <div class="subtitulo">Mateus 14.22–33 — Três leituras, três olhares</div>
+    <div class="estudo-instrucao">Leia o texto pelo menos três vezes. Cada leitura com um foco diferente:</div>
+    <div class="estudo-leitura">
+      <p><strong>1ª leitura:</strong> Observe Pedro — suas palavras, atitudes e emoções.</p>
+      <p><strong>2ª leitura:</strong> Observe Jesus — o que Ele faz, o que Ele diz e quando Ele intervém.</p>
+      <p><strong>3ª leitura:</strong> Observe o barco, o vento e o mar — o que cada elemento revela sobre a tensão entre segurança, circunstâncias e confiança.</p>
+    </div>
+    <div class="estudo-instrucao">Depois escreva, sem tentar produzir respostas "espiritualmente corretas":</div>
+    <div class="pergunta-num"><div class="num">1</div><p>Qual é o meu barco hoje?</p></div>
+    <div class="pergunta-num"><div class="num">2</div><p>Qual é o meu vento?</p></div>
+    <div class="pergunta-num"><div class="num">3</div><p>O que exatamente estou com medo de perder?</p></div>
+    <div class="pergunta-num"><div class="num">4</div><p>Por que acredito que Deus está me chamando?</p></div>
+    <div class="pergunta-num"><div class="num">5</div><p>Quais confirmações já recebi?</p></div>
+    <div class="pergunta-num"><div class="num">6</div><p>Existe alguma confirmação que continuo exigindo de Deus porque tenho medo de agir?</p></div>
+    <div class="pergunta-num"><div class="num">7</div><p>O que seria prudência neste momento?</p></div>
+    <div class="pergunta-num"><div class="num">8</div><p>O que pode estar parecendo prudência, mas na verdade é medo?</p></div>
+    <div class="pergunta-num"><div class="num">9</div><p>Qual é o próximo passo de obediência — não necessariamente o passo final?</p></div>
+    <div class="estudo-instrucao" style="margin-top:16px; margin-bottom:0;">Não responda tudo rapidamente. Algumas dessas perguntas merecem permanecer abertas diante de Deus.</div>
+  </div>
+
+  <!-- ORAÇÃO -->
+  <div class="oracao-box">
+    <div class="label">Oração</div>
+    <p>Senhor, eu não quero confundir fé com irresponsabilidade, mas também não quero chamar meu medo de prudência.</p>
+    <p>Tu conheces aquilo que se passa dentro de mim. Conheces minhas responsabilidades, meus sonhos, minha família, meu ministério e também aquilo que tenho medo de perder.</p>
+    <p>Se tenho compreendido errado tua direção, corrige-me. Se estou tentando correr antes do teu tempo, ensina-me a esperar. Mas, se és Tu quem está dizendo "venha", não permitas que minha necessidade de controlar o futuro seja maior do que minha confiança em Ti.</p>
+    <p>Dá-me sabedoria para planejar, humildade para ouvir conselhos, responsabilidade para cuidar daqueles que colocaste ao meu lado e coragem para obedecer.</p>
+    <p>Eu não preciso compreender tudo o que estás fazendo para continuar confiando em Ti.</p>
+    <p>Quando eu olhar para o vento, lembra-me de quem Tu és. Quando eu tiver medo, ensina-me a clamar. E quando eu reconhecer tua voz, dá-me coragem para responder.</p>
+    <p><strong>Amém.</strong></p>
+  </div>
+
+  <!-- FRASE FINAL -->
+  <div class="frase-final">
+    <p>"Nem sempre compreenderei o que Deus está fazendo, mas sempre posso escolher confiar no que Ele está realizando."</p>
+    <div class="ref">Pr. Beiriz · IBF Freguesia · 20 de setembro de 2026</div>
+  </div>
+
+  <!-- BOTÃO YOUTUBE -->
+  <div style="text-align:center; margin: -24px 0 48px;">
+    <a href="https://www.youtube.com/live/_lUFzvI9vgM?si=6xifNHUuLjK8s72j" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:10px;background:#CC0000;color:#fff;font-family:Source Sans 3,sans-serif;font-size:14px;font-weight:700;letter-spacing:0.5px;text-decoration:none;padding:12px 24px;border-radius:8px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      Assistir à pregação no YouTube
+    </a>
+  </div>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>"Coragem! Sou eu. Não tenham medo." — Mateus 14.27</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 08</small>
+</div>
+
+</body>
+</html>
