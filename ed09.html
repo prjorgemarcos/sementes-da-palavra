@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 09</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --bg: #FAFAF8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0A1F12 0%, #1A4731 45%, #2D6A4F 80%, #3A8A60 100%);
+    padding: 56px 24px 64px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(82,183,136,0.22) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 90%, rgba(139,105,20,0.15) 0%, transparent 45%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(82,183,136,0.15);
+    border: 1px solid rgba(82,183,136,0.35);
+    color: #74C69D;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .badge-dot { width: 6px; height: 6px; background: #52B788; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 7vw, 46px);
+    font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 12px;
+  }
+  .hero h1 em { font-style: italic; color: #74C69D; }
+  .hero-sub { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(82,183,136,0.75); font-style: italic; margin-bottom: 8px; }
+  .hero-textos { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.5px; }
+
+  /* ── CONTENT ── */
+  .content { max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; }
+
+  /* ── VERSÍCULO ÂNCORA ── */
+  .versiculo-ancora {
+    background: var(--verde-menta);
+    border-left: 5px solid var(--verde-claro);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px; margin: 40px 0;
+  }
+  .versiculo-ancora p {
+    font-family: 'Lora', serif;
+    font-size: 17px; font-style: italic;
+    color: var(--verde-escuro); line-height: 1.7; margin-bottom: 10px;
+  }
+  .versiculo-ancora .ref {
+    font-size: 12px; font-weight: 700;
+    color: var(--verde-medio); letter-spacing: 0.5px;
+  }
+
+  /* ── NOTA DO PASTOR ── */
+  .nota-pastor {
+    background: var(--verde-escuro);
+    border-radius: 16px; padding: 28px 32px; margin-bottom: 48px;
+    position: relative; overflow: hidden;
+  }
+  .nota-pastor::before {
+    content: '❝'; position: absolute; top: -10px; left: 20px;
+    font-size: 120px; color: rgba(82,183,136,0.08);
+    font-family: 'Lora', serif; line-height: 1;
+  }
+  .nota-pastor .nota-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #74C69D; margin-bottom: 14px;
+  }
+  .nota-pastor p {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-style: italic;
+    color: rgba(255,255,255,0.85); line-height: 1.8;
+    position: relative; z-index: 1; margin-bottom: 14px;
+  }
+  .nota-pastor p:last-child { margin-bottom: 0; }
+
+  /* ── SEÇÃO ── */
+  .sec-header { display: flex; align-items: center; gap: 14px; margin: 52px 0 20px; }
+  .sec-num {
+    flex-shrink: 0; width: 44px; height: 44px;
+    background: var(--verde-escuro); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: #74C69D;
+  }
+  .sec-label-small {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--verde-claro); margin-bottom: 2px;
+  }
+  .sec-title {
+    font-family: 'Lora', serif;
+    font-size: 22px; font-weight: 700; color: var(--verde-escuro); line-height: 1.2;
+  }
+  .sec-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--verde-claro), transparent);
+    border-radius: 2px; margin-bottom: 24px;
+  }
+
+  /* ── CORPO ── */
+  .body-text p {
+    font-size: 17px; color: var(--dark); line-height: 1.85; margin-bottom: 20px;
+  }
+  .body-text p:last-child { margin-bottom: 0; }
+  .body-text strong { font-weight: 700; color: var(--verde-escuro); }
+  .body-text em { font-style: italic; color: var(--verde-medio); }
+
+  /* ── VERSÍCULO INLINE ── */
+  .v-inline {
+    background: var(--verde-menta);
+    border-left: 3px solid var(--verde-claro);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px; margin: 20px 0;
+    font-family: 'Lora', serif; font-size: 16px; font-style: italic;
+    color: var(--verde-escuro); line-height: 1.65;
+  }
+  .v-inline .ref {
+    display: block; margin-top: 8px;
+    font-size: 11px; font-weight: 700; font-style: normal;
+    color: var(--verde-medio); letter-spacing: 0.5px;
+  }
+
+  /* ── FRASE DESTAQUE ── */
+  .frase-destaque {
+    font-family: 'Lora', serif; font-size: 18px; font-style: italic;
+    color: var(--verde-escuro);
+    border-left: 4px solid var(--verde-claro);
+    padding: 14px 20px; margin: 28px 0;
+    background: #F0FDF4;
+    border-radius: 0 10px 10px 0; line-height: 1.65;
+  }
+
+  /* ── REFLEXÃO INLINE ── */
+  .reflexao-inline {
+    background: #F6FEF9;
+    border: 1.5px solid #B7E4C7;
+    border-radius: 10px; padding: 16px 20px; margin: 24px 0;
+  }
+  .reflexao-inline .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--verde-claro); margin-bottom: 10px;
+  }
+  .reflexao-inline p {
+    font-family: 'Lora', serif; font-size: 15px; font-style: italic;
+    color: var(--verde-medio); line-height: 1.7; margin-bottom: 8px;
+  }
+  .reflexao-inline p:last-child { margin-bottom: 0; }
+
+  /* ── CARD CAPÍTULOS ── */
+  .capitulos-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px; margin: 32px 0;
+  }
+  @media (max-width: 520px) { .capitulos-grid { grid-template-columns: 1fr; } }
+  .capitulo-card {
+    border-radius: 12px; padding: 18px 16px;
+    border: 1.5px solid;
+    text-align: center;
+  }
+  .capitulo-card.c15 { background: #EFF6FF; border-color: #BFDBFE; }
+  .capitulo-card.c16 { background: var(--dourado-claro); border-color: #D4A843; }
+  .capitulo-card.c22 { background: var(--verde-menta); border-color: var(--verde-claro); }
+  .capitulo-card .cap-num {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .capitulo-card.c15 .cap-num { color: #3B82F6; }
+  .capitulo-card.c16 .cap-num { color: var(--dourado); }
+  .capitulo-card.c22 .cap-num { color: var(--verde-medio); }
+  .capitulo-card .cap-titulo {
+    font-family: 'Lora', serif; font-size: 15px; font-weight: 700;
+    line-height: 1.3; margin-bottom: 8px;
+  }
+  .capitulo-card.c15 .cap-titulo { color: #1E3A5F; }
+  .capitulo-card.c16 .cap-titulo { color: #5A3A00; }
+  .capitulo-card.c22 .cap-titulo { color: var(--verde-escuro); }
+  .capitulo-card .cap-desc {
+    font-size: 13px; color: var(--mid); line-height: 1.5;
+  }
+
+  /* ── DIVISOR ── */
+  .divisor { text-align: center; margin: 52px 0; color: var(--verde-claro); font-size: 20px; letter-spacing: 8px; }
+
+  /* ── ORAÇÃO ── */
+  .oracao-box {
+    background: var(--dourado-claro); border: 1.5px solid #D4A843;
+    border-radius: 16px; padding: 32px; margin: 32px 0;
+  }
+  .oracao-box .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--dourado); margin-bottom: 20px;
+  }
+  .oracao-box p {
+    font-family: 'Lora', serif; font-size: 16px; font-style: italic;
+    color: #3A2800; line-height: 1.85; margin-bottom: 14px;
+  }
+  .oracao-box p:last-child { margin-bottom: 0; }
+  .oracao-box strong { font-style: normal; color: var(--dourado); }
+
+  /* ── FRASE FINAL ── */
+  .frase-final {
+    background: var(--verde-escuro); border-radius: 12px;
+    padding: 28px 32px; margin: 32px 0; text-align: center;
+  }
+  .frase-final p {
+    font-family: 'Lora', serif; font-size: 18px; font-style: italic;
+    color: rgba(255,255,255,0.9); line-height: 1.7;
+  }
+  .frase-final .ref {
+    margin-top: 12px; font-size: 12px; font-weight: 700;
+    color: #74C69D; letter-spacing: 0.5px;
+  }
+
+  /* ── FOOTER ── */
+  .page-footer { background: var(--verde-escuro); padding: 32px 24px; text-align: center; }
+  .page-footer p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+  }
+  .page-footer small {
+    font-size: 11px; color: rgba(255,255,255,0.3);
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 09</div>
+    <h1><em>Dependentes</em></h1>
+    <p class="hero-sub">Quando aprendemos a confiar em quem fez a promessa</p>
+    <p class="hero-ref">Mensagem: Ana Clara · Anotações: Pr. Jorge Marcos Fonseca</p>
+    <p class="hero-textos">Gênesis 12 · 15 · 16 · 17 · 21 · 22</p>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- VERSÍCULO ÂNCORA -->
+  <div class="versiculo-ancora">
+    <p>"Então Abraão respondeu: 'Deus mesmo proverá o cordeiro para o holocausto, meu filho.' E os dois caminharam juntos."</p>
+    <span class="ref">Gênesis 22.8</span>
+  </div>
+
+  <!-- NOTA DO PASTOR -->
+  <div class="nota-pastor">
+    <div class="nota-label">Uma palavra do pastor Jorge</div>
+    <p>Enquanto Ana Clara pregava no nosso Culto da Juventude, eu fazia algumas anotações.</p>
+    <p>Hoje revisitei tudo aquilo que escrevi e percebi o quanto Deus falou ao meu coração através da vida dela.</p>
+    <p>Por isso, quero dividir um pouco com vocês o que ouvi — e o que continuou ecoando em mim depois que o culto terminou.</p>
+  </div>
+
+  <!-- SEÇÃO 1 -->
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Gênesis 12.1–3,7</div>
+      <div class="sec-title">Uma promessa maior do que as possibilidades</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Quando Deus chama Abrão, Ele não entrega um mapa completo de tudo o que aconteceria. Ele entrega uma promessa.</p>
+    <p>Deus manda Abrão sair da sua terra e promete fazer dele uma grande nação, abençoá-lo e, por meio dele, alcançar outros povos. Mais tarde, Deus reafirma que aquela terra seria dada à sua descendência.</p>
+    <p>O problema é que havia uma enorme distância entre <strong>a promessa de Deus e aquilo que Abraão conseguia enxergar</strong>.</p>
+    <p>Os anos passaram. E a promessa continuava sendo promessa.</p>
+    <p>Em Gênesis 15, encontramos uma conversa muito humana entre Abrão e Deus. Deus lhe diz para não ter medo e reafirma sua proteção. Abrão, porém, olha para sua realidade e pergunta, basicamente:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Como isso vai acontecer se eu continuo sem filhos?"
+  </div>
+
+  <div class="body-text">
+    <p>Deus então o leva para fora. Manda que olhe para o céu, olhe para as estrelas. E reafirma: assim seria sua descendência.</p>
+    <p>Deus estava dizendo:</p>
+  </div>
+
+  <div class="v-inline">
+    "Abrão, aquilo que você não consegue enxergar ainda não deixou de estar debaixo da minha promessa."
+  </div>
+
+  <!-- SEÇÃO 2 -->
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Gênesis 16.1–4</div>
+      <div class="sec-title">Quando a insegurança cria atalhos</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Mas esperar é difícil. E aqui a história de Abraão fica muito parecida com a nossa.</p>
+    <p>Sarai ainda não tinha filhos e apresenta Agar a Abrão. Abrão aceita e se relaciona com ela. Agar engravida.</p>
+    <p>Deus havia feito uma promessa. Mas a demora produziu insegurança. A insegurança produziu ansiedade. E a ansiedade produziu um atalho.</p>
+    <p>Abrão tentou dar uma "ajudinha" para que a promessa de Deus acontecesse.</p>
+    <p>Talvez esse seja um dos grandes perigos da nossa caminhada:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Continuarmos acreditando na promessa de Deus, mas deixarmos de confiar no processo de Deus."
+  </div>
+
+  <div class="body-text">
+    <p>Às vezes não abandonamos Deus. Só começamos a criar nossos próprios caminhos para chegar ao lugar que acreditamos que Ele prometeu.</p>
+    <p>E dependência de Deus também significa depender <strong>do tempo, do caminho e da maneira de Deus.</strong></p>
+  </div>
+
+  <div class="reflexao-inline">
+    <div class="label">Para refletir</div>
+    <p>Existe alguma área da minha vida onde ainda acredito na promessa, mas estou tentando resolver sozinho o caminho?</p>
+  </div>
+
+  <!-- SEÇÃO 3 -->
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Gênesis 16.7–13 · 17.18–21</div>
+      <div class="sec-title">Deus continua sendo Deus quando nos precipitamos</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>O atalho de Abraão trouxe consequências. Mas algo chama muito a atenção nessa história: <strong>o erro de Abraão não fez Deus perder o controle da história.</strong></p>
+    <p>Agar foge, sofre e se encontra em uma situação de profunda vulnerabilidade. E Deus a encontra. Deus vê aquela mulher. Ouve sua aflição. E promete multiplicar a descendência de Ismael.</p>
+    <p>Mais tarde, quando Abraão pede a Deus que Ismael viva debaixo de sua bênção, Deus responde que o abençoaria, o faria fecundo e lhe daria grande descendência.</p>
+    <p>Mas Deus também deixa algo muito claro: <strong>a aliança seria estabelecida com Isaque.</strong></p>
+    <p>Isso é muito importante.</p>
+  </div>
+
+  <div class="frase-destaque">
+    "A graça de Deus alcança as consequências da nossa precipitação — mas nossa precipitação não redefine os princípios de Deus."
+  </div>
+
+  <div class="body-text">
+    <p>Deus é gracioso. Deus cuida. Deus restaura. <em>Mas Deus continua sendo Deus.</em></p>
+  </div>
+
+  <!-- SEÇÃO 4 -->
+  <div class="sec-header">
+    <div class="sec-num">4</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Gênesis 21–22</div>
+      <div class="sec-title">O processo também faz parte da promessa</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Ana Clara disse algo que ficou comigo:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "O processo é muito importante, porque é nele que Deus nos prepara para receber aquilo que Ele tem para nos dar."
+  </div>
+
+  <div class="body-text">
+    <p>Talvez Abraão ainda não fosse, em Gênesis 16, o homem que precisaria ser em Gênesis 22. Entre esses dois capítulos existem anos de espera, erros, correções, encontros com Deus, promessas reafirmadas e experiências.</p>
+    <p>Até que Isaque nasce. O filho da promessa. Finalmente.</p>
+    <p>Mas então acontece algo completamente inesperado: <strong>Deus pede Isaque.</strong></p>
+    <p>E aqui encontramos um Abraão diferente daquele que vimos tentando resolver tudo com Agar. Quando chega próximo ao lugar do sacrifício, Abraão diz aos servos que permaneçam ali enquanto ele e o menino seguem adiante.</p>
+    <p>E sua declaração é impressionante: <em>eles voltariam. Não apenas Abraão — Abraão e Isaque.</em></p>
+    <p>Depois, enquanto caminham, Isaque pergunta onde está o cordeiro. Abraão responde:</p>
+  </div>
+
+  <div class="v-inline">
+    "Deus proverá."
+    <span class="ref">Gênesis 22.8</span>
+  </div>
+
+  <div class="body-text">
+    <p>Que diferença.</p>
+    <p>Antes, quando Abraão não conseguia enxergar como Deus cumpriria a promessa, ele criou uma solução. Agora, novamente diante de algo que não consegue compreender, ele não cria um atalho. <strong>Ele confia.</strong></p>
+    <p>É como se o Abraão de Gênesis 22 pudesse olhar para o Abraão de Gênesis 16 e dizer:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Você não precisava ter tentado resolver tudo. Deus sabia o que estava fazendo."
+  </div>
+
+  <!-- CARD DOS 3 MOMENTOS -->
+  <div class="capitulos-grid">
+    <div class="capitulo-card c15">
+      <div class="cap-num">Gênesis 15</div>
+      <div class="cap-titulo">"Como isso vai acontecer?"</div>
+      <div class="cap-desc">A pergunta honesta diante da promessa que ainda não se cumpriu.</div>
+    </div>
+    <div class="capitulo-card c16">
+      <div class="cap-num">Gênesis 16</div>
+      <div class="cap-titulo">"Talvez eu precise dar um jeito."</div>
+      <div class="cap-desc">A tentação de criar atalhos quando a espera dura demais.</div>
+    </div>
+    <div class="capitulo-card c22">
+      <div class="cap-num">Gênesis 22</div>
+      <div class="cap-titulo">"Deus proverá."</div>
+      <div class="cap-desc">A confiança que só o processo foi capaz de construir.</div>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5 -->
+  <div class="sec-header">
+    <div class="sec-num">5</div>
+    <div class="sec-title-block">
+      <div class="sec-label-small">Gênesis 22.8</div>
+      <div class="sec-title">Os nossos imprevistos não surpreendem o nosso Deus</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="body-text">
+    <p>Uma frase ficou ecoando em mim enquanto revisitava a mensagem da Ana Clara:</p>
+  </div>
+
+  <div class="frase-destaque">
+    "Os nossos imprevistos e limitações não surpreendem a Deus."
+  </div>
+
+  <div class="body-text">
+    <p>Para Abraão, aquilo parecia impossível. Para Deus, não.</p>
+    <p>E isso não significa que nunca teremos medo, dúvidas, perdas ou momentos em que não conseguiremos entender o que Deus está fazendo. Significa que <strong>aquilo que me surpreende não surpreende Deus.</strong></p>
+    <p>Quando tudo está indo muito bem, dependemos Dele. Quando a vida está normal, dependemos Dele. Quando tudo parece estar indo de mal a pior, continuamos dependendo Dele.</p>
+    <p>Nossa dependência não aumenta quando a crise chega.</p>
+  </div>
+
+  <div class="frase-destaque">
+    "A crise apenas revela uma dependência que sempre existiu."
+  </div>
+
+  <div class="body-text">
+    <p>Talvez hoje você esteja vivendo o seu Gênesis 15, perguntando: <em>"Deus, como isso vai acontecer?"</em></p>
+    <p>Talvez esteja diante da tentação de Gênesis 16: <em>"Talvez eu precise dar um jeito."</em></p>
+    <p>Ou talvez esteja vivendo Gênesis 22, diante de algo que simplesmente não consegue compreender.</p>
+    <p>Seja qual for o capítulo em que você esteja, o Deus da história continua sendo o mesmo. Não precisamos saber <em>como</em> Ele fará para continuarmos confiando em <em>quem</em> Ele é.</p>
+    <p>Abraão precisou de uma caminhada inteira para aprender isso. E nós também estamos sendo ensinados.</p>
+    <p><strong>O processo também é parte daquilo que Deus está fazendo em nós.</strong></p>
+  </div>
+
+  <div class="divisor">· · ·</div>
+
+  <!-- ORAÇÃO -->
+  <div class="oracao-box">
+    <div class="label">Oração</div>
+    <p>Senhor, eu não sei como, não sei quando e não consigo enxergar o que o Senhor está fazendo.</p>
+    <p>Mas reconheço novamente: eu dependo de Ti.</p>
+    <p>Guarda-me da tentação de criar atalhos quando a espera dura demais. Ensina-me que o processo não é o obstáculo — é parte da promessa.</p>
+    <p>Que eu possa confiar não apenas no que o Senhor prometeu, mas no tempo, no caminho e na maneira que o Senhor escolheu para cumprir.</p>
+    <p>Porque os meus imprevistos não te surpreendem. E quando eu não souber o que fazer, ainda posso confiar:</p>
+    <p><strong>Deus proverá.</strong></p>
+    <p><strong>Amém.</strong></p>
+  </div>
+
+  <!-- FRASE FINAL -->
+  <div class="frase-final">
+    <p>"Não precisamos saber <em>como</em> Ele fará para continuarmos confiando em <em>quem</em> Ele é."</p>
+    <div class="ref">Ana Clara · Culto da Juventude IBF</div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- LOUVOR -->
+<div style="max-width:680px;margin:0 auto;padding:40px 24px 8px;">
+  <div style="text-align:center;margin-bottom:14px;">
+    <span style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--verde-claro);">🎵 Louvor da semana</span>
+  </div>
+  <div style="border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.12);">
+    <iframe
+      width="100%" height="200"
+      src="https://www.youtube.com/embed/6z9-3QGZfh0"
+      title="Tu És Deus (A Ele) — Encontros OCDI | O Canto das Igrejas"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="display:block;">
+    </iframe>
+  </div>
+  <p style="text-align:center;margin-top:10px;font-size:13px;color:var(--mid);font-style:italic;">Tu És Deus (A Ele) — Encontros OCDI | O Canto das Igrejas</p>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>"Deus mesmo proverá o cordeiro." — Gênesis 22.8</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 09</small>
+</div>
+
+</body>
+</html>
