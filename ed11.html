@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 11</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --bg: #FAFAF8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0A1F12 0%, #1A4731 45%, #2D6A4F 80%, #3A8A60 100%);
+    padding: 56px 24px 64px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(82,183,136,0.22) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 90%, rgba(139,105,20,0.15) 0%, transparent 45%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 660px; margin: 0 auto; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(82,183,136,0.15);
+    border: 1px solid rgba(82,183,136,0.35);
+    color: #74C69D;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .badge-dot { width: 6px; height: 6px; background: #52B788; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 7vw, 46px);
+    font-weight: 700; color: #fff; line-height: 1.15; margin-bottom: 14px;
+  }
+  .hero h1 em { font-style: italic; color: #74C69D; }
+  .hero-sub {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 16px; color: rgba(255,255,255,0.65);
+    max-width: 500px; margin: 0 auto 28px;
+  }
+  .hero-meta {
+    display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap;
+  }
+  .hero-meta span { font-size: 12px; color: rgba(255,255,255,0.5); letter-spacing: 0.5px; }
+  .hero-meta span strong { color: rgba(255,255,255,0.75); }
+
+  /* ── CONTENT ── */
+  .content { max-width: 680px; margin: 0 auto; padding: 0 24px 60px; }
+
+  /* ── VERSÍCULO ÂNCORA ── */
+  .versiculo-ancora {
+    background: var(--verde-menta);
+    border-left: 5px solid var(--verde-claro);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px; margin: 40px 0;
+  }
+  .versiculo-ancora p {
+    font-family: 'Lora', serif;
+    font-size: 17px; font-style: italic;
+    color: var(--verde-escuro); line-height: 1.7; margin-bottom: 10px;
+  }
+  .versiculo-ancora .ref {
+    font-size: 12px; font-weight: 700;
+    color: var(--verde-medio); letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── NOTA DO PASTOR ── */
+  .nota-pastor {
+    background: var(--verde-escuro);
+    border-radius: 12px; padding: 24px 28px; margin: 0 0 40px;
+  }
+  .nota-pastor .np-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--verde-claro); margin-bottom: 10px;
+  }
+  .nota-pastor p {
+    font-size: 15px; line-height: 1.75; color: rgba(255,255,255,0.82);
+  }
+  .nota-pastor p + p { margin-top: 10px; }
+  .nota-pastor .np-assinatura {
+    margin-top: 14px;
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 14px; color: rgba(82,183,136,0.8);
+  }
+
+  /* ── SECTION HEADER ── */
+  .sec-header { display: flex; align-items: flex-start; gap: 16px; margin: 48px 0 20px; }
+  .sec-num {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--verde-escuro); color: #fff;
+    font-size: 15px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 3px;
+  }
+  .sec-title { font-family: 'Lora', serif; font-size: clamp(20px,4vw,26px); font-weight: 700; color: var(--verde-escuro); line-height: 1.3; }
+  .sec-ref { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--verde-claro); margin-top: 4px; }
+
+  .sec-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--verde-claro) 0%, transparent 100%);
+    margin: 0 0 24px;
+  }
+
+  /* ── BODY TEXT ── */
+  .body-text { font-size: 16px; color: #333; line-height: 1.8; margin-bottom: 16px; }
+
+  /* ── INLINE VERSE ── */
+  .v-inline {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 15px; color: var(--verde-medio);
+    border-left: 3px solid var(--verde-claro);
+    padding: 10px 16px; margin: 20px 0;
+    background: rgba(82,183,136,0.06); border-radius: 0 6px 6px 0;
+  }
+
+  /* ── DESTAQUE ── */
+  .frase-destaque {
+    border-left: 4px solid var(--verde-claro);
+    padding: 14px 18px; margin: 24px 0;
+    background: rgba(82,183,136,0.06); border-radius: 0 8px 8px 0;
+  }
+  .frase-destaque p {
+    font-family: 'Lora', serif; font-size: 17px;
+    font-weight: 600; color: var(--verde-escuro); line-height: 1.5;
+  }
+
+  /* ── CITAÇÃO (fala de outra pessoa) ── */
+  .citacao-belle {
+    border: 1.5px solid rgba(82,183,136,0.35);
+    border-radius: 10px; padding: 18px 20px; margin: 20px 0;
+    background: rgba(82,183,136,0.04);
+  }
+  .citacao-belle .cb-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--verde-claro); margin-bottom: 8px;
+  }
+  .citacao-belle p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 16px; color: var(--verde-escuro); line-height: 1.65;
+  }
+
+  /* ── PERGUNTA DE REFLEXÃO ── */
+  .reflexao-inline {
+    border: 1.5px solid var(--verde-claro);
+    border-radius: 10px; padding: 18px 20px;
+    margin: 24px 0; background: #fff;
+  }
+  .reflexao-inline .r-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--verde-claro); margin-bottom: 8px;
+  }
+  .reflexao-inline p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 16px; color: var(--verde-escuro); line-height: 1.6;
+  }
+
+  /* ── PERGUNTAS ESTUDO ── */
+  .estudo-box {
+    background: var(--verde-escuro); border-radius: 12px;
+    padding: 28px; margin: 40px 0;
+  }
+  .estudo-box .eb-titulo {
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--verde-claro); margin-bottom: 20px;
+  }
+  .estudo-box ol { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .estudo-box ol li { display: flex; gap: 14px; align-items: flex-start; }
+  .estudo-box ol li .eq-num {
+    flex-shrink: 0; width: 28px; height: 28px;
+    background: rgba(82,183,136,0.2); border: 1px solid rgba(82,183,136,0.4);
+    border-radius: 50%; color: var(--verde-claro);
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .estudo-box ol li p { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.6; padding-top: 3px; }
+
+  /* ── PASSO DA SEMANA ── */
+  .passo-box {
+    background: var(--verde-menta); border: 1.5px solid var(--verde-claro);
+    border-radius: 12px; padding: 24px 28px; margin: 32px 0;
+  }
+  .passo-box .pb-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--verde-medio); margin-bottom: 12px;
+  }
+  .passo-box p { font-size: 15px; color: var(--verde-escuro); line-height: 1.75; }
+  .passo-box p + p { margin-top: 10px; }
+
+  /* ── ORAÇÃO ── */
+  .oracao-box {
+    background: var(--dourado-claro); border: 1.5px solid #D4A61A;
+    border-radius: 12px; padding: 28px; margin: 40px 0;
+  }
+  .oracao-box .ob-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--dourado); margin-bottom: 12px;
+  }
+  .oracao-box p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 16px; color: #4A3200; line-height: 1.8;
+  }
+  .oracao-box p + p { margin-top: 12px; }
+
+  /* ── FRASE FINAL ── */
+  .frase-final {
+    background: var(--verde-escuro); border-radius: 12px;
+    padding: 32px 28px; text-align: center; margin: 40px 0;
+  }
+  .frase-final p {
+    font-family: 'Lora', serif; font-size: clamp(16px,3.5vw,21px);
+    font-weight: 700; color: #fff; line-height: 1.55;
+  }
+  .frase-final p em { color: #74C69D; font-style: italic; }
+
+  /* ── LOUVOR ── */
+  .louvor-sec { margin: 40px 0 8px; }
+  .louvor-label {
+    text-align: center; margin-bottom: 14px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--verde-claro);
+  }
+  .louvor-frame { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  .louvor-frame iframe { display: block; width: 100%; height: 200px; border: none; }
+  .louvor-sub { text-align: center; margin-top: 10px; font-size: 13px; color: var(--mid); font-style: italic; }
+
+  /* ── FOOTER ── */
+  .page-footer { background: var(--verde-escuro); padding: 32px 24px; text-align: center; }
+  .page-footer p {
+    font-family: 'Lora', serif; font-style: italic;
+    font-size: 16px; color: rgba(255,255,255,0.9); margin-bottom: 8px;
+  }
+  .page-footer small { font-size: 12px; color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Sementes da Palavra · Edição 11</div>
+    <h1>Como <em>criança</em></h1>
+    <p class="hero-sub">Redescobrindo a humildade e a dependência de quem pertence ao Reino</p>
+    <div class="hero-meta">
+      <span>📖 <strong>Mateus 18.1–5</strong></span>
+      <span>·</span>
+      <span>🕊️ <strong>IBF · Culto da Juventude</strong></span>
+      <span>·</span>
+      <span>📅 <strong>25 de outubro de 2026</strong></span>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- VERSÍCULO ÂNCORA -->
+  <div class="versiculo-ancora">
+    <p>"Em verdade vos digo que, se não vos converterdes e não vos tornardes como crianças, de modo algum entrareis no Reino dos Céus."</p>
+    <div class="ref">Mateus 18.3</div>
+  </div>
+
+  <!-- NOTA DO PASTOR -->
+  <div class="nota-pastor">
+    <div class="np-label">📝 Nota do pastor</div>
+    <p>Esse devocional nasce a partir da mensagem da Isabele, no Culto da Juventude do dia 25 de outubro. Enquanto ouvia, fui anotando o que Deus foi falando ao meu coração através da vida dela.</p>
+    <p>Há perguntas que revelam o que estamos procurando. Os discípulos perguntaram a Jesus quem era o maior no Reino dos Céus. E Jesus respondeu colocando uma criança no meio deles. Compartilho aqui o que ficou em mim.</p>
+    <div class="np-assinatura">— Pr. Jorge Marcos Fonseca</div>
+  </div>
+
+  <!-- INTRODUÇÃO -->
+  <p class="body-text">Os discípulos caminhavam com o Mestre e ainda precisavam aprender o que significava ser grande aos olhos de Deus. Enquanto seguiam Jesus, disputavam posição.</p>
+  <p class="body-text">Essa pergunta continua presente entre nós. Talvez não a façamos em voz alta, mas ela aparece quando nos comparamos, quando precisamos provar nosso valor ou quando ficamos frustrados porque ninguém percebeu o que fizemos. Isso também alcança quem serve na igreja.</p>
+  <p class="body-text">Jesus conhece esse movimento do nosso coração. E, para ensinar os discípulos, chama uma criança para perto.</p>
+
+  <!-- SEÇÃO 1 -->
+  <div class="sec-header">
+    <div class="sec-num">1</div>
+    <div>
+      <div class="sec-title">Quando precisamos ser reconhecidos</div>
+      <div class="sec-ref">Mateus 18.1–2</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <p class="body-text">A pergunta dos discípulos colocava a grandeza em termos de posição: quem estaria acima dos outros? É uma preocupação que conhecemos. No trabalho, nos estudos, nas redes sociais e até no ministério, somos tentados a medir nosso valor pela atenção que recebemos.</p>
+
+  <div class="citacao-belle">
+    <div class="cb-label">Da mensagem da Isabele</div>
+    <p>"O problema não é assumir responsabilidades. O problema é que se preocupar tanto com ser reconhecido pelas pessoas às vezes nos faz esquecer daquilo que Deus espera verdadeiramente de nós."</p>
+  </div>
+
+  <p class="body-text">Podemos estudar, crescer, liderar e assumir responsabilidades. Precisamos, porém, examinar o que buscamos nessas oportunidades.</p>
+
+  <div class="frase-destaque">
+    <p>O serviço também é um lugar onde Deus trata nossas motivações.</p>
+  </div>
+
+  <div class="reflexao-inline">
+    <div class="r-label">🔎 Para refletir</div>
+    <p>Consigo celebrar quando outra pessoa é escolhida? Continuo servindo com disposição quando ninguém comenta? Recebo uma orientação sem sentir que meu valor foi diminuído?</p>
+  </div>
+
+  <!-- SEÇÃO 2 -->
+  <div class="sec-header">
+    <div class="sec-num">2</div>
+    <div>
+      <div class="sec-title">Aprender a depender</div>
+      <div class="sec-ref">Mateus 18.3–4</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <p class="body-text">Jesus coloca uma criança no meio dos discípulos e os chama a uma mudança de direção. Naquela sociedade, uma criança não possuía o prestígio ou a autoridade de um adulto. Jesus escolhe justamente alguém sem posição de destaque para confrontar a disputa por importância.</p>
+
+  <div class="v-inline">
+    "Humilhar-se como aquela criança" — Mt 18.4
+  </div>
+
+  <p class="body-text">Crescer traz responsabilidades. Aprendemos a decidir, trabalhar e cuidar de outras pessoas. Mas podemos começar a acreditar que precisamos dar conta de tudo sozinhos. Então escondemos nossas dificuldades, temos vergonha de perguntar, adiamos um pedido de ajuda. Até nossas orações podem se tornar apenas uma apresentação dos planos que já decidimos seguir.</p>
+
+  <div class="frase-destaque">
+    <p>A maturidade cristã inclui aprender a depender de Deus e receber o cuidado que Ele nos oferece.</p>
+  </div>
+
+  <p class="body-text">A mensagem de Jesus nos convida a abrir as mãos. Podemos dizer: <em>"Senhor, eu não sei como conduzir isso. Preciso que me ensines."</em> Podemos procurar alguém e reconhecer: <em>"Estou com dificuldade. Você pode caminhar comigo?"</em></p>
+
+  <div class="reflexao-inline">
+    <div class="r-label">🔎 Para refletir</div>
+    <p>O que tenho tentado carregar sozinho e preciso apresentar a Deus — inclusive pedindo ajuda a alguém de confiança?</p>
+  </div>
+
+  <!-- SEÇÃO 3 -->
+  <div class="sec-header">
+    <div class="sec-num">3</div>
+    <div>
+      <div class="sec-title">A humildade aparece no acolhimento</div>
+      <div class="sec-ref">Mateus 18.5</div>
+    </div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <p class="body-text">O ensino de Jesus chega à maneira como recebemos as pessoas. No versículo 5, Ele associa o acolhimento de uma criança, em seu nome, ao acolhimento dele próprio. A pergunta sobre quem ocupa o lugar mais alto dá lugar à atenção por quem costuma receber menos importância.</p>
+
+  <p class="body-text">Isso alcança nossa juventude de maneira muito concreta: o adolescente que precisa ouvir a mesma orientação outra vez; quem chegou agora e ainda não encontrou seu lugar; a pessoa tímida que fica esperando alguém iniciar uma conversa; aquele que errou e precisa de correção acompanhada de cuidado.</p>
+
+  <div class="frase-destaque">
+    <p>Quando reconhecemos a paciência de Jesus conosco, encontramos motivos para tratar o outro com paciência também.</p>
+  </div>
+
+  <p class="body-text">Jovens, precisamos olhar para quem está ao nosso lado. Há pessoas que precisam ser ouvidas, incluídas e acompanhadas. Nossa maneira de recebê-las faz parte da resposta que damos à Palavra.</p>
+
+  <div class="reflexao-inline">
+    <div class="r-label">🔎 Para refletir</div>
+    <p>Quem precisa receber de mim atenção, acolhimento e paciência nesta semana?</p>
+  </div>
+
+  <!-- PERGUNTAS ESTUDO -->
+  <div class="estudo-box">
+    <div class="eb-titulo">📚 Perguntas para estudo em grupo</div>
+    <ol>
+      <li><span class="eq-num">1</span><p>Por que os discípulos perguntaram quem seria o maior no Reino dos Céus? O que essa pergunta revela sobre o coração deles — e sobre o nosso?</p></li>
+      <li><span class="eq-num">2</span><p>Por que Jesus escolheu uma criança para responder à pergunta dos discípulos? O que uma criança representava naquela cultura?</p></li>
+      <li><span class="eq-num">3</span><p>O que significa "converter-se e tornar-se como criança" (v. 3)? Quais características de uma criança Jesus estava destacando?</p></li>
+      <li><span class="eq-num">4</span><p>Em quais áreas da sua vida você sente mais dificuldade de depender de Deus — e de pedir ajuda a outras pessoas?</p></li>
+      <li><span class="eq-num">5</span><p>Como o desejo de reconhecimento pode se infiltrar no serviço na igreja? Como perceber quando isso está acontecendo?</p></li>
+      <li><span class="eq-num">6</span><p>Jesus associa receber uma criança em seu nome a recebê-lo a ele próprio (v. 5). O que isso diz sobre como Ele enxerga quem normalmente passa despercebido?</p></li>
+      <li><span class="eq-num">7</span><p>Existe alguém na sua comunidade que você tem ignorado ou acolhido apenas superficialmente? O que seria necessário mudar?</p></li>
+    </ol>
+  </div>
+
+  <!-- PASSO DA SEMANA -->
+  <div class="passo-box">
+    <div class="pb-label">👣 Um passo para esta semana</div>
+    <p>Separe alguns minutos para apresentar a Deus uma dificuldade que você tem tentado resolver sozinho. Considere também com quem pode compartilhá-la.</p>
+    <p>Depois, tome a iniciativa de se aproximar de alguém da juventude que você conhece pouco. Escute com atenção e procure saber como essa pessoa está.</p>
+  </div>
+
+  <!-- ORAÇÃO -->
+  <div class="oracao-box">
+    <div class="ob-label">🙏 Oração</div>
+    <p>Senhor Jesus, tua Palavra revela o que existe em nosso coração.</p>
+    <p>Reconhecemos que muitas vezes buscamos aprovação e queremos provar que somos importantes. Ensina-nos a servir com sinceridade e a celebrar o que fazes na vida dos outros.</p>
+    <p>Dá-nos humildade para reconhecer nossos limites, receber orientação e pedir ajuda.</p>
+    <p>Cuida também da maneira como tratamos as pessoas. Que haja paciência em nossas palavras, atenção em nossa escuta e disposição para acolher quem se aproxima.</p>
+    <p>Forma em nós um coração que confia em Ti e aprende contigo.</p>
+    <p>Amém.</p>
+  </div>
+
+  <!-- FRASE FINAL -->
+  <div class="frase-final">
+    <p>"No Reino de Deus, a verdadeira grandeza<br>não está na autossuficiência,<br>mas na <em>dependência de Cristo</em>."</p>
+  </div>
+
+  <!-- PREGAÇÃO -->
+  <div class="louvor-sec">
+    <div class="louvor-label">🎙️ Pregação da semana — Isabele</div>
+    <div class="louvor-frame">
+      <iframe
+        src="https://www.youtube.com/embed/3arj7CoYnss"
+        title="Como criança — Mensagem da Isabele · IBF Juventude"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p class="louvor-sub">Como criança — Isabele · IBF Juventude · 25 de outubro de 2026</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>"Se não vos tornardes como crianças, de modo algum entrareis no Reino dos Céus." — Mateus 18.3</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 11</small>
+</div>
+
+</body>
+</html>
