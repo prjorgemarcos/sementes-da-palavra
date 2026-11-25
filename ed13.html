@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sementes da Palavra — Edição 13 · Permaneça</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1A4731;
+    --verde-medio: #2D6A4F;
+    --verde-claro: #52B788;
+    --verde-menta: #D8F3DC;
+    --dourado: #8B6914;
+    --dourado-claro: #FFF3CD;
+    --dark: #1A1A1A;
+    --mid: #444;
+    --cinza: #6B7280;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: 'Source Sans 3', sans-serif; color: var(--dark); line-height: 1.7; }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #0D2B1A 0%, #1A4731 55%, #2D6A4F 100%);
+    padding: 48px 24px 56px; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 75% 15%, rgba(82,183,136,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 15% 85%, rgba(139,105,20,0.12) 0%, transparent 50%);
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.35); color: #74C69D; font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+  .badge-dot { width: 6px; height: 6px; background: #52B788; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(28px, 7vw, 44px); font-weight: 700; color: #fff; line-height: 1.1; margin-bottom: 10px; }
+  .hero-sub-title { font-family: 'Lora', serif; font-size: clamp(14px, 3vw, 17px); color: rgba(255,255,255,0.65); font-style: italic; margin-bottom: 20px; }
+  .hero-meta { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
+  .hero-ref { font-family: 'Lora', serif; font-size: 13px; color: rgba(82,183,136,0.75); font-style: italic; }
+
+  /* ── BOTÃO YOUTUBE ── */
+  .yt-section { background: var(--verde-escuro); padding: 18px 24px; }
+  .yt-btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: #FF0000; color: white; text-decoration: none; border-radius: 10px; padding: 14px 24px; font-size: 15px; font-weight: 600; font-family: 'Source Sans 3', sans-serif; max-width: 480px; margin: 0 auto; transition: opacity .2s; }
+  .yt-btn:hover { opacity: .9; }
+  .yt-icon { font-size: 20px; }
+  .yt-label { display: flex; flex-direction: column; text-align: left; }
+  .yt-label span:first-child { font-size: 11px; font-weight: 400; opacity: .85; }
+
+  /* ── CONTEÚDO ── */
+  .content { max-width: 640px; margin: 0 auto; padding: 36px 24px 64px; }
+
+  /* ── NOTA DO PASTOR ── */
+  .nota-do-pastor {
+    background: #12301F;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .nota-do-pastor::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(82,183,136,0.1) 0%, transparent 70%);
+  }
+  .nota-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #52B788; margin-bottom: 14px; }
+  .nota-do-pastor p { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: rgba(255,255,255,0.8); line-height: 1.72; margin-bottom: 12px; }
+  .nota-do-pastor p:last-of-type { margin-bottom: 16px; }
+  .nota-assinatura { font-size: 12px; color: rgba(82,183,136,0.7); font-style: normal; letter-spacing: .3px; }
+
+  /* ── VERSÍCULO ÂNCORA ── */
+  .versiculo-ancora {
+    background: var(--verde-menta);
+    border-left: 4px solid var(--verde-claro);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 20px;
+    margin: 0 0 36px;
+  }
+  .versiculo-ancora p { font-family: 'Lora', serif; font-size: 16px; font-style: italic; color: var(--verde-escuro); line-height: 1.65; margin-bottom: 8px; }
+  .versiculo-ancora .ref { font-size: 12px; font-weight: 700; color: var(--verde-medio); letter-spacing: .5px; font-style: normal; }
+
+  /* ── SEÇÃO ── */
+  .sec-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--verde-claro); margin-bottom: 6px; }
+  .sec-num { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .sec-num-circle { width: 28px; height: 28px; background: var(--verde-menta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--verde-escuro); flex-shrink: 0; }
+  .sec-num-title { font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: var(--verde-escuro); line-height: 1.25; }
+  .sec-divider { height: 2px; background: linear-gradient(90deg, var(--verde-menta), transparent); border-radius: 2px; margin: 10px 0 18px; }
+  .body-text p { font-size: 16px; color: var(--dark); line-height: 1.75; margin-bottom: 16px; }
+  .body-text p:last-child { margin-bottom: 0; }
+  .body-text p em { font-style: italic; color: var(--verde-medio); }
+  .body-text p strong { font-weight: 700; color: var(--verde-escuro); }
+
+  /* ── SEPARADOR ENTRE PONTOS ── */
+  .ponto-sep { margin: 36px 0; border: none; border-top: 1px solid #E5E7EB; }
+
+  /* ── CITAÇÃO PREGADOR ── */
+  .cita-preg {
+    border-left: 3px solid var(--dourado);
+    padding: 14px 18px;
+    margin: 20px 0;
+    background: var(--dourado-claro);
+    border-radius: 0 8px 8px 0;
+  }
+  .cita-preg p { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: #3A2800; line-height: 1.65; }
+
+  /* ── FRASE DESTAQUE ── */
+  .frase-destaque {
+    border-left: 4px solid var(--verde-claro);
+    background: #F0FDF4;
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+  .frase-destaque p { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: var(--verde-escuro); line-height: 1.65; }
+
+  /* ── CONCLUSÃO ── */
+  .conclusao-card {
+    background: #12301F;
+    border-radius: 14px;
+    padding: 24px;
+    margin: 36px 0 28px;
+  }
+  .conclusao-card .conclusao-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #52B788; margin-bottom: 14px; }
+  .conclusao-card p { font-size: 15px; color: rgba(255,255,255,0.82); line-height: 1.72; margin-bottom: 12px; }
+  .conclusao-card p:last-child { margin-bottom: 0; }
+  .conclusao-card .frase-central { font-family: 'Lora', serif; font-style: italic; font-size: 16px; color: #74C69D; line-height: 1.6; border-top: 1px solid rgba(82,183,136,0.2); padding-top: 16px; margin-top: 16px; }
+
+  /* ── ORAÇÃO ── */
+  .oracao-box {
+    background: var(--dourado-claro);
+    border: 1.5px solid #D4A843;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 0 8px;
+  }
+  .oracao-box .label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--dourado); margin-bottom: 10px; }
+  .oracao-box p { font-family: 'Lora', serif; font-size: 15px; font-style: italic; color: #3A2800; line-height: 1.72; margin-bottom: 10px; }
+  .oracao-box p:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ── */
+  .page-footer { background: var(--verde-escuro); padding: 28px 24px; text-align: center; }
+  .page-footer p { font-family: 'Lora', serif; font-style: italic; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+  .page-footer small { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 36px 16px 44px; }
+    .content { padding: 24px 16px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="badge"><span class="badge-dot"></span>🌱 Sementes da Palavra · Edição 13</div>
+    <h1>Permaneça</h1>
+    <p class="hero-sub-title">Uma fé que continua quando o entusiasmo passa</p>
+    <p class="hero-meta">Habacuque 3.16–19 · Quésia · IBF Juventude</p>
+    <p class="hero-ref">Igreja Batista da Freguesia da Ilha — 22 de novembro de 2026</p>
+  </div>
+</div>
+
+<!-- BOTÃO YOUTUBE -->
+<div class="yt-section">
+  <a class="yt-btn" href="https://www.youtube.com/live/NhGtCESAIao" target="_blank">
+    <span class="yt-icon">▶</span>
+    <span class="yt-label">
+      <span>Assista à mensagem completa</span>
+      <span>Permaneça · IBF</span>
+    </span>
+  </a>
+</div>
+
+<!-- CONTEÚDO -->
+<div class="content">
+
+  <!-- NOTA DO PASTOR -->
+  <div class="nota-do-pastor">
+    <div class="nota-label">Nota do pastor</div>
+    <p>Quésia começou sua mensagem reconhecendo o nervosismo de pregar pela primeira vez. Ao longo da reflexão, compartilhou também uma experiência difícil de sua vida como empreendedora.</p>
+    <p>Existe algo precioso nessa disposição de ensinar a Palavra enquanto reconhecemos o quanto também precisamos dela.</p>
+    <p>Falamos sobre confiança em Deus levando conosco perguntas, preocupações e experiências que ainda estão sendo elaboradas. E, enquanto anunciamos, também somos chamados a ouvir.</p>
+    <p>A mensagem daquele domingo nos deixou um convite: permanecer. Esse convite nos alcança quando o entusiasmo diminui, quando os planos são interrompidos e quando precisamos encontrar forças para continuar.</p>
+    <span class="nota-assinatura">— Pr. Jorge Marcos Fonseca</span>
+  </div>
+
+  <!-- VERSÍCULO ÂNCORA -->
+  <div class="versiculo-ancora">
+    <p>"O Senhor soberano é minha força."</p>
+    <span class="ref">Habacuque 3.19</span>
+  </div>
+
+  <!-- PONTO 1 -->
+  <div class="sec-num">
+    <div class="sec-num-circle">1</div>
+    <h2 class="sec-num-title">A fé que permanece enfrenta o medo</h2>
+  </div>
+  <div class="sec-divider"></div>
+  <div class="body-text">
+    <p>Habacuque começa esse trecho descrevendo uma reação intensa: ele estremece, seus lábios tremem e seu corpo sente o peso daquilo que ouviu. O profeta conhece a gravidade do que está por vir. Sua confiança em Deus convive com esse temor.</p>
+    <p>Precisamos prestar atenção nisso, porque às vezes tratamos nossas emoções como se fossem uma medida exata da nossa fé. Se sentimos medo, concluímos que estamos falhando. Se ficamos abalados, pensamos que já deveríamos ter aprendido a confiar.</p>
+    <p>Habacuque apresenta seu tremor diante de Deus.</p>
+    <p>Quésia aproximou essa experiência da própria história. Ao contar sobre a tempestade que atingiu seu trabalho e danificou equipamentos importantes, ela compartilhou o medo de perder o que havia construído e precisar recomeçar. Para quem olha de fora, são equipamentos. Para quem trabalhou por eles, há investimento, esforço, planos e sustento envolvidos.</p>
+    <p>Podemos apresentar tudo isso ao Senhor com sinceridade. Podemos pedir ajuda, receber cuidado e continuar buscando sua direção.</p>
+  </div>
+  <div class="frase-destaque">
+    <p>A fé também se expressa na oração de quem está com medo e ainda assim recorre a Deus.</p>
+  </div>
+
+  <hr class="ponto-sep">
+
+  <!-- PONTO 2 -->
+  <div class="sec-num">
+    <div class="sec-num-circle">2</div>
+    <h2 class="sec-num-title">A fé que permanece confia durante a espera</h2>
+  </div>
+  <div class="sec-divider"></div>
+  <div class="body-text">
+    <p>Habacuque descreve um cenário de perdas: a figueira sem flores, a videira sem frutos, os campos sem alimento e os currais vazios. Essas imagens envolvem a sobrevivência daquele povo. O profeta contempla a possibilidade de faltar o sustento.</p>
+    <p>É nesse cenário que declara sua alegria no Deus de sua salvação.</p>
+    <p>Quésia destacou que confiar envolve entregar a Deus nossas expectativas sobre como e quando Ele deve agir. Essa entrega alcança uma das nossas maiores dificuldades: queremos segurança sobre os próximos acontecimentos. Oramos e esperamos uma resposta específica. Fazemos planos e imaginamos o caminho. Quando as coisas acontecem de outra maneira, precisamos lidar com a frustração e rever nossas expectativas.</p>
+    <p>Habacuque nos ensina a continuar dirigindo o coração a Deus nessa experiência. Sua declaração não estabelece um prazo para a recuperação das colheitas — ela revela em quem ele encontra esperança enquanto encara a perda.</p>
+  </div>
+  <div class="frase-destaque">
+    <p>Talvez exista hoje uma espera assim em sua vida. Algo pelo qual você tem orado, trabalhado e se dedicado, mas que continua sem definição. Leve essa espera ao Senhor. Apresente também sua frustração.</p>
+  </div>
+
+  <hr class="ponto-sep">
+
+  <!-- PONTO 3 -->
+  <div class="sec-num">
+    <div class="sec-num-circle">3</div>
+    <h2 class="sec-num-title">A fé que permanece encontra força no Senhor</h2>
+  </div>
+  <div class="sec-divider"></div>
+  <div class="body-text">
+    <p>Habacuque encerra sua oração reconhecendo: <em>"O Senhor soberano é minha força"</em> (Hc 3.19). Depois de falar sobre o medo e a possibilidade de perder o sustento, o profeta reconhece em Deus a força para continuar. A imagem dos pés firmes como os da corça aponta para a capacidade de caminhar por terrenos difíceis, sustentado pelo Senhor.</p>
+    <p>Existem momentos em que percebemos os limites da nossa disposição. O entusiasmo diminui, o cansaço chega e as respostas continuam demorando. Nessas horas, precisamos voltar à fonte que sustenta nossa caminhada.</p>
+    <p>Jovens, haverá dias em que nosso próximo passo será pequeno. Ainda assim, podemos dá-lo confiando no Senhor. É Ele quem firma nossos pés ao longo do caminho.</p>
+  </div>
+  <div class="cita-preg">
+    <p>"Quando as circunstâncias mudarem, permaneça. Quando as respostas demorarem, permaneça. Quando o cansaço chegar, permaneça."</p>
+  </div>
+  <div class="body-text" style="margin-top:16px;">
+    <p>Permanecer em Cristo envolve recorrer a Ele com sinceridade: abrir a Palavra, apresentar nossas dificuldades em oração e receber o cuidado dos irmãos. A fé que permanece encontra em Deus a força necessária para continuar.</p>
+  </div>
+
+  <!-- CONCLUSÃO -->
+  <div class="conclusao-card">
+    <div class="conclusao-label">Conclusão — Permaneça em Cristo</div>
+    <p>Ao longo da mensagem, Quésia nos conduziu por três movimentos: enfrentar o medo, confiar durante a espera e encontrar força no Senhor.</p>
+    <p>Habacuque nos ajuda a perceber como essas experiências podem existir na mesma caminhada. Ele sente o corpo tremer, considera a ausência de alimento e, ainda assim, dirige sua esperança ao Deus de sua salvação.</p>
+    <p>Talvez você tenha se reconhecido em alguma dessas situações. Existe um medo que precisa apresentar a Deus? Uma espera que tem consumido suas forças? Um cansaço que precisa compartilhar com alguém? O convite é levar tudo isso a Jesus e continuar caminhando com Ele.</p>
+    <p class="frase-central">"Jesus não é apenas uma decisão para os dias bons. É uma caminhada de fé, dependência e perseverança."</p>
+  </div>
+
+  <!-- ORAÇÃO -->
+  <div class="oracao-box">
+    <div class="label">Oremos juntos</div>
+    <p>Senhor, tu conheces nossos medos, nossas esperas e nosso cansaço.</p>
+    <p>Renova nossa confiança em ti. Firma nossos pés quando as circunstâncias nos abalarem e sustenta-nos quando as respostas demorarem.</p>
+    <p>Ensina-nos a buscar tua presença, receber cuidado e caminhar ao lado dos nossos irmãos. Que tua Palavra encontre lugar em nossa vida também depois que o entusiasmo passar.</p>
+    <p>Dá-nos força para permanecer em Cristo, um dia de cada vez. Em nome de Jesus, amém.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>"O Senhor soberano é minha força." — Habacuque 3.19</p>
+  <small>🌱 Sementes da Palavra · IBF · Edição 13</small>
+</div>
+
+</body>
+</html>
